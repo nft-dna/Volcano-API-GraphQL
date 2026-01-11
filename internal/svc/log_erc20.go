@@ -9,10 +9,10 @@ import (
 //var zeroErc20Address = common.Address{}
 
 // memeToken::event BlockMinted(address)
-func memeTokenBlockMinted(evt *eth.Log, _ *logObserver) {
-	// sanity check: no extra topics; receiver address only = 32 bytes
-	if len(evt.Data) < 32 || len(evt.Topics) != 1 {
-		log.Errorf("not MemeToken::BlockMinted() event #%d/#%d; expected at least 32 bytes of data, %d given; expected 1 topic, %d given",
+func memeTokenBlocksMinted(evt *eth.Log, _ *logObserver) {
+	// sanity check: no extra topics; receiver address 32 bytes and uint256 blocksCount 32 bytes
+	if len(evt.Data) < 64 || len(evt.Topics) != 1 {
+		log.Errorf("not MemeToken::BlocksMinted() event #%d/#%d; expected at least 64 bytes of data, %d given; expected 1 topic, %d given",
 			evt.BlockNumber, evt.Index, len(evt.Data), len(evt.Topics))
 		return
 	}

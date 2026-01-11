@@ -1,0 +1,41 @@
+[
+    {
+      "inputs": [],
+      "name": "erc20MintFeePerc",
+      "outputs": [
+        {
+          "internalType": "uint96",
+          "name": "",
+          "type": "uint96"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "erc20MintTokenFeePerc",
+      "outputs": [
+        {
+          "internalType": "uint96",
+          "name": "",
+          "type": "uint96"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "feeRecipient",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+]

@@ -25,6 +25,16 @@
           "internalType": "address payable",
           "name": "_routerAddress",
           "type": "address"
+        },
+        {
+          "internalType": "uint24",
+          "name": "_routerAddressV3Fee",
+          "type": "uint24"
+        },
+        {
+          "internalType": "address",
+          "name": "_stakingAddress",
+          "type": "address"
         }
       ],
       "stateMutability": "nonpayable",
@@ -69,25 +79,6 @@
       "type": "event"
     },
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "caller",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
-        }
-      ],
-      "name": "TokenDisabled",
-      "type": "event"
-    },
-    {
       "inputs": [
         {
           "internalType": "string",
@@ -128,6 +119,11 @@
           "internalType": "uint256",
           "name": "_mintBlocksFee",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_stakingAmount",
+          "type": "uint256"
         }
       ],
       "name": "createTokenContract",
@@ -139,19 +135,6 @@
         }
       ],
       "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "tokenContractAddress",
-          "type": "address"
-        }
-      ],
-      "name": "disableTokenContract",
-      "outputs": [],
-      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -223,9 +206,19 @@
           "internalType": "address",
           "name": "to",
           "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "count",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "refund",
+          "type": "bool"
         }
       ],
-      "name": "mintTokenBlock",
+      "name": "mintTokenBlocks",
       "outputs": [],
       "stateMutability": "payable",
       "type": "function"
@@ -257,19 +250,6 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "tokenContractAddress",
-          "type": "address"
-        }
-      ],
-      "name": "registerTokenContract",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "inputs": [],
       "name": "renounceOwnership",
       "outputs": [],
@@ -282,6 +262,32 @@
       "outputs": [
         {
           "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "routerAddressV3Fee",
+      "outputs": [
+        {
+          "internalType": "uint24",
+          "name": "",
+          "type": "uint24"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stakingAddress",
+      "outputs": [
+        {
+          "internalType": "contract VolcanoERC20StakingInterface",
           "name": "",
           "type": "address"
         }
@@ -305,51 +311,27 @@
     {
       "inputs": [
         {
+          "internalType": "uint256",
+          "name": "_platformContractFee",
+          "type": "uint256"
+        },
+        {
           "internalType": "uint96",
           "name": "_erc20MintFeePerc",
           "type": "uint96"
-        }
-      ],
-      "name": "updateErc20MintFeePerc",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
+        },
         {
           "internalType": "uint96",
           "name": "_erc20MintTokenFeePerc",
           "type": "uint96"
-        }
-      ],
-      "name": "updateErc20MintTokenFeePerc",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
+        },
         {
           "internalType": "address payable",
           "name": "_feeRecipient",
           "type": "address"
         }
       ],
-      "name": "updateFeeRecipient",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_platformContractFee",
-          "type": "uint256"
-        }
-      ],
-      "name": "updatePlatformContractFee",
+      "name": "updatePlatformFees",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -360,11 +342,29 @@
           "internalType": "address payable",
           "name": "_routerAddress",
           "type": "address"
+        },
+        {
+          "internalType": "uint24",
+          "name": "_fee",
+          "type": "uint24"
         }
       ],
       "name": "updateRouterAddress",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_stakingAddress",
+          "type": "address"
+        }
+      ],
+      "name": "updateStakingAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
-  ]
+ ]
