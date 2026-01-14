@@ -240,7 +240,7 @@ func (o *Opera) Erc20MHasSupply(contract *common.Address, block *big.Int) (bool,
 // CanMintErc721 checks if the given user can mint a new token on the given NFT contract.
 func (o *Opera) Erc20CanMintBlocks(contract *common.Address, user *common.Address, fee *big.Int) (bool, error) {
 	// MM: TODO.. adjust to newer Factory contract
-	data, err := o.abiVolcano20.Pack("mintBlocks", *user, big.NewInt(1))
+	data, err := o.abiVolcano20.Pack("mintBlocks", *user, big.NewInt(1), true)
 	if err != nil {
 		return false, err
 	}
