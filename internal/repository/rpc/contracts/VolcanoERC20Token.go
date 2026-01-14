@@ -29,113 +29,113 @@ var (
 	_ = abi.ConvertType
 )
 
-// VolcanoERC720TokenMetaData contains all meta data concerning the VolcanoERC720Token contract.
-var VolcanoERC720TokenMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_symbol\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_uri\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_initialReceiver\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_initialAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_capAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_mintBlocks\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_mintBlocksFee\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_factory\",\"type\":\"address\"},{\"internalType\":\"addresspayable\",\"name\":\"_routerAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"InvalidShortString\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"str\",\"type\":\"string\"}],\"name\":\"StringTooLong\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"}],\"name\":\"BlockMinted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EIP712DomainChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"burn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"burnFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"cap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"name\":\"decreaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eip712Domain\",\"outputs\":[{\"internalType\":\"bytes1\",\"name\":\"fields\",\"type\":\"bytes1\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"version\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"verifyingContract\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"salt\",\"type\":\"bytes32\"},{\"internalType\":\"uint256[]\",\"name\":\"extensions\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"addedValue\",\"type\":\"uint256\"}],\"name\":\"increaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"initialReserves\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"mintBlock\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintBlocksAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintBlocksFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintBlocksMaxSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintBlocksSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"nonces\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"permit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"routerAddress\",\"outputs\":[{\"internalType\":\"contractUniswapRouterInterface\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_uri\",\"type\":\"string\"}],\"name\":\"updateContractURI\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdrawETH\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdrawTokens\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
+// VolcanoERC20TokenMetaData contains all meta data concerning the VolcanoERC20Token contract.
+var VolcanoERC20TokenMetaData = &bind.MetaData{
+	ABI: "[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_symbol\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_initialReceiver\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_initialAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_capAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_mintBlocks\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_mintBlocksFee\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_factory\",\"type\":\"address\"},{\"internalType\":\"addresspayable\",\"name\":\"_routerAddress\",\"type\":\"address\"},{\"internalType\":\"uint24\",\"name\":\"_routerAddressV3Fee\",\"type\":\"uint24\"},{\"internalType\":\"uint256\",\"name\":\"_stakingAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"InvalidShortString\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"str\",\"type\":\"string\"}],\"name\":\"StringTooLong\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"BlocksMinted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EIP712DomainChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"burn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"burnFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"positionOwner\",\"type\":\"address\"}],\"name\":\"burnV3Position\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"cap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenid\",\"type\":\"uint256\"}],\"name\":\"collectV3Position\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"name\":\"decreaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eip712Domain\",\"outputs\":[{\"internalType\":\"bytes1\",\"name\":\"fields\",\"type\":\"bytes1\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"version\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"verifyingContract\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"salt\",\"type\":\"bytes32\"},{\"internalType\":\"uint256[]\",\"name\":\"extensions\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"factory\",\"outputs\":[{\"internalType\":\"contractVolcanoERC20FactoryInterface\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"addedValue\",\"type\":\"uint256\"}],\"name\":\"increaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"initialReserves\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractVolcanoERC20StakingInterface\",\"name\":\"_stakingAddress\",\"type\":\"address\"}],\"name\":\"initilizeStaking\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"refund\",\"type\":\"bool\"}],\"name\":\"mintBlocks\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintBlocksAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintBlocksFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintBlocksMaxSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintBlocksSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"nonces\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"permit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"routerAddress\",\"outputs\":[{\"internalType\":\"contractUniswapRouterInterface\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"routerAddressV3Fee\",\"outputs\":[{\"internalType\":\"uint24\",\"name\":\"\",\"type\":\"uint24\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stakingAddress\",\"outputs\":[{\"internalType\":\"contractVolcanoERC20StakingInterface\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stakingAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_uri\",\"type\":\"string\"}],\"name\":\"updateContractURI\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"v3positions\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdrawETH\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdrawTokens\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
 }
 
-// VolcanoERC720TokenABI is the input ABI used to generate the binding from.
-// Deprecated: Use VolcanoERC720TokenMetaData.ABI instead.
-var VolcanoERC720TokenABI = VolcanoERC720TokenMetaData.ABI
+// VolcanoERC20TokenABI is the input ABI used to generate the binding from.
+// Deprecated: Use VolcanoERC20TokenMetaData.ABI instead.
+var VolcanoERC20TokenABI = VolcanoERC20TokenMetaData.ABI
 
-// VolcanoERC720Token is an auto generated Go binding around an Ethereum contract.
-type VolcanoERC720Token struct {
-	VolcanoERC720TokenCaller     // Read-only binding to the contract
-	VolcanoERC720TokenTransactor // Write-only binding to the contract
-	VolcanoERC720TokenFilterer   // Log filterer for contract events
+// VolcanoERC20Token is an auto generated Go binding around an Ethereum contract.
+type VolcanoERC20Token struct {
+	VolcanoERC20TokenCaller     // Read-only binding to the contract
+	VolcanoERC20TokenTransactor // Write-only binding to the contract
+	VolcanoERC20TokenFilterer   // Log filterer for contract events
 }
 
-// VolcanoERC720TokenCaller is an auto generated read-only Go binding around an Ethereum contract.
-type VolcanoERC720TokenCaller struct {
+// VolcanoERC20TokenCaller is an auto generated read-only Go binding around an Ethereum contract.
+type VolcanoERC20TokenCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// VolcanoERC720TokenTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type VolcanoERC720TokenTransactor struct {
+// VolcanoERC20TokenTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type VolcanoERC20TokenTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// VolcanoERC720TokenFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type VolcanoERC720TokenFilterer struct {
+// VolcanoERC20TokenFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type VolcanoERC20TokenFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// VolcanoERC720TokenSession is an auto generated Go binding around an Ethereum contract,
+// VolcanoERC20TokenSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type VolcanoERC720TokenSession struct {
-	Contract     *VolcanoERC720Token // Generic contract binding to set the session for
-	CallOpts     bind.CallOpts       // Call options to use throughout this session
-	TransactOpts bind.TransactOpts   // Transaction auth options to use throughout this session
+type VolcanoERC20TokenSession struct {
+	Contract     *VolcanoERC20Token // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts      // Call options to use throughout this session
+	TransactOpts bind.TransactOpts  // Transaction auth options to use throughout this session
 }
 
-// VolcanoERC720TokenCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// VolcanoERC20TokenCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type VolcanoERC720TokenCallerSession struct {
-	Contract *VolcanoERC720TokenCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts             // Call options to use throughout this session
+type VolcanoERC20TokenCallerSession struct {
+	Contract *VolcanoERC20TokenCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts            // Call options to use throughout this session
 }
 
-// VolcanoERC720TokenTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// VolcanoERC20TokenTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type VolcanoERC720TokenTransactorSession struct {
-	Contract     *VolcanoERC720TokenTransactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts             // Transaction auth options to use throughout this session
+type VolcanoERC20TokenTransactorSession struct {
+	Contract     *VolcanoERC20TokenTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts            // Transaction auth options to use throughout this session
 }
 
-// VolcanoERC720TokenRaw is an auto generated low-level Go binding around an Ethereum contract.
-type VolcanoERC720TokenRaw struct {
-	Contract *VolcanoERC720Token // Generic contract binding to access the raw methods on
+// VolcanoERC20TokenRaw is an auto generated low-level Go binding around an Ethereum contract.
+type VolcanoERC20TokenRaw struct {
+	Contract *VolcanoERC20Token // Generic contract binding to access the raw methods on
 }
 
-// VolcanoERC720TokenCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type VolcanoERC720TokenCallerRaw struct {
-	Contract *VolcanoERC720TokenCaller // Generic read-only contract binding to access the raw methods on
+// VolcanoERC20TokenCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type VolcanoERC20TokenCallerRaw struct {
+	Contract *VolcanoERC20TokenCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// VolcanoERC720TokenTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type VolcanoERC720TokenTransactorRaw struct {
-	Contract *VolcanoERC720TokenTransactor // Generic write-only contract binding to access the raw methods on
+// VolcanoERC20TokenTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type VolcanoERC20TokenTransactorRaw struct {
+	Contract *VolcanoERC20TokenTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewVolcanoERC720Token creates a new instance of VolcanoERC720Token, bound to a specific deployed contract.
-func NewVolcanoERC720Token(address common.Address, backend bind.ContractBackend) (*VolcanoERC720Token, error) {
-	contract, err := bindVolcanoERC720Token(address, backend, backend, backend)
+// NewVolcanoERC20Token creates a new instance of VolcanoERC20Token, bound to a specific deployed contract.
+func NewVolcanoERC20Token(address common.Address, backend bind.ContractBackend) (*VolcanoERC20Token, error) {
+	contract, err := bindVolcanoERC20Token(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720Token{VolcanoERC720TokenCaller: VolcanoERC720TokenCaller{contract: contract}, VolcanoERC720TokenTransactor: VolcanoERC720TokenTransactor{contract: contract}, VolcanoERC720TokenFilterer: VolcanoERC720TokenFilterer{contract: contract}}, nil
+	return &VolcanoERC20Token{VolcanoERC20TokenCaller: VolcanoERC20TokenCaller{contract: contract}, VolcanoERC20TokenTransactor: VolcanoERC20TokenTransactor{contract: contract}, VolcanoERC20TokenFilterer: VolcanoERC20TokenFilterer{contract: contract}}, nil
 }
 
-// NewVolcanoERC720TokenCaller creates a new read-only instance of VolcanoERC720Token, bound to a specific deployed contract.
-func NewVolcanoERC720TokenCaller(address common.Address, caller bind.ContractCaller) (*VolcanoERC720TokenCaller, error) {
-	contract, err := bindVolcanoERC720Token(address, caller, nil, nil)
+// NewVolcanoERC20TokenCaller creates a new read-only instance of VolcanoERC20Token, bound to a specific deployed contract.
+func NewVolcanoERC20TokenCaller(address common.Address, caller bind.ContractCaller) (*VolcanoERC20TokenCaller, error) {
+	contract, err := bindVolcanoERC20Token(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720TokenCaller{contract: contract}, nil
+	return &VolcanoERC20TokenCaller{contract: contract}, nil
 }
 
-// NewVolcanoERC720TokenTransactor creates a new write-only instance of VolcanoERC720Token, bound to a specific deployed contract.
-func NewVolcanoERC720TokenTransactor(address common.Address, transactor bind.ContractTransactor) (*VolcanoERC720TokenTransactor, error) {
-	contract, err := bindVolcanoERC720Token(address, nil, transactor, nil)
+// NewVolcanoERC20TokenTransactor creates a new write-only instance of VolcanoERC20Token, bound to a specific deployed contract.
+func NewVolcanoERC20TokenTransactor(address common.Address, transactor bind.ContractTransactor) (*VolcanoERC20TokenTransactor, error) {
+	contract, err := bindVolcanoERC20Token(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720TokenTransactor{contract: contract}, nil
+	return &VolcanoERC20TokenTransactor{contract: contract}, nil
 }
 
-// NewVolcanoERC720TokenFilterer creates a new log filterer instance of VolcanoERC720Token, bound to a specific deployed contract.
-func NewVolcanoERC720TokenFilterer(address common.Address, filterer bind.ContractFilterer) (*VolcanoERC720TokenFilterer, error) {
-	contract, err := bindVolcanoERC720Token(address, nil, nil, filterer)
+// NewVolcanoERC20TokenFilterer creates a new log filterer instance of VolcanoERC20Token, bound to a specific deployed contract.
+func NewVolcanoERC20TokenFilterer(address common.Address, filterer bind.ContractFilterer) (*VolcanoERC20TokenFilterer, error) {
+	contract, err := bindVolcanoERC20Token(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720TokenFilterer{contract: contract}, nil
+	return &VolcanoERC20TokenFilterer{contract: contract}, nil
 }
 
-// bindVolcanoERC720Token binds a generic wrapper to an already deployed contract.
-func bindVolcanoERC720Token(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := VolcanoERC720TokenMetaData.GetAbi()
+// bindVolcanoERC20Token binds a generic wrapper to an already deployed contract.
+func bindVolcanoERC20Token(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := VolcanoERC20TokenMetaData.GetAbi()
 	if err != nil {
 		return nil, err
 	}
@@ -146,46 +146,46 @@ func bindVolcanoERC720Token(address common.Address, caller bind.ContractCaller, 
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_VolcanoERC720Token *VolcanoERC720TokenRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _VolcanoERC720Token.Contract.VolcanoERC720TokenCaller.contract.Call(opts, result, method, params...)
+func (_VolcanoERC20Token *VolcanoERC20TokenRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _VolcanoERC20Token.Contract.VolcanoERC20TokenCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_VolcanoERC720Token *VolcanoERC720TokenRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.VolcanoERC720TokenTransactor.contract.Transfer(opts)
+func (_VolcanoERC20Token *VolcanoERC20TokenRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.VolcanoERC20TokenTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_VolcanoERC720Token *VolcanoERC720TokenRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.VolcanoERC720TokenTransactor.contract.Transact(opts, method, params...)
+func (_VolcanoERC20Token *VolcanoERC20TokenRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.VolcanoERC20TokenTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _VolcanoERC720Token.Contract.contract.Call(opts, result, method, params...)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _VolcanoERC20Token.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.contract.Transfer(opts)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.contract.Transact(opts, method, params...)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.contract.Transact(opts, method, params...)
 }
 
 // DOMAINSEPARATOR is a free data retrieval call binding the contract method 0x3644e515.
 //
 // Solidity: function DOMAIN_SEPARATOR() view returns(bytes32)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) DOMAINSEPARATOR(opts *bind.CallOpts) ([32]byte, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) DOMAINSEPARATOR(opts *bind.CallOpts) ([32]byte, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "DOMAIN_SEPARATOR")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "DOMAIN_SEPARATOR")
 
 	if err != nil {
 		return *new([32]byte), err
@@ -200,23 +200,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) DOMAINSEPARATOR(opts *bind.
 // DOMAINSEPARATOR is a free data retrieval call binding the contract method 0x3644e515.
 //
 // Solidity: function DOMAIN_SEPARATOR() view returns(bytes32)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) DOMAINSEPARATOR() ([32]byte, error) {
-	return _VolcanoERC720Token.Contract.DOMAINSEPARATOR(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) DOMAINSEPARATOR() ([32]byte, error) {
+	return _VolcanoERC20Token.Contract.DOMAINSEPARATOR(&_VolcanoERC20Token.CallOpts)
 }
 
 // DOMAINSEPARATOR is a free data retrieval call binding the contract method 0x3644e515.
 //
 // Solidity: function DOMAIN_SEPARATOR() view returns(bytes32)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) DOMAINSEPARATOR() ([32]byte, error) {
-	return _VolcanoERC720Token.Contract.DOMAINSEPARATOR(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) DOMAINSEPARATOR() ([32]byte, error) {
+	return _VolcanoERC20Token.Contract.DOMAINSEPARATOR(&_VolcanoERC20Token.CallOpts)
 }
 
 // Allowance is a free data retrieval call binding the contract method 0xdd62ed3e.
 //
 // Solidity: function allowance(address owner, address spender) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Allowance(opts *bind.CallOpts, owner common.Address, spender common.Address) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Allowance(opts *bind.CallOpts, owner common.Address, spender common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "allowance", owner, spender)
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "allowance", owner, spender)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -231,23 +231,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Allowance(opts *bind.CallOp
 // Allowance is a free data retrieval call binding the contract method 0xdd62ed3e.
 //
 // Solidity: function allowance(address owner, address spender) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Allowance(owner common.Address, spender common.Address) (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.Allowance(&_VolcanoERC720Token.CallOpts, owner, spender)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Allowance(owner common.Address, spender common.Address) (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.Allowance(&_VolcanoERC20Token.CallOpts, owner, spender)
 }
 
 // Allowance is a free data retrieval call binding the contract method 0xdd62ed3e.
 //
 // Solidity: function allowance(address owner, address spender) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Allowance(owner common.Address, spender common.Address) (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.Allowance(&_VolcanoERC720Token.CallOpts, owner, spender)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Allowance(owner common.Address, spender common.Address) (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.Allowance(&_VolcanoERC20Token.CallOpts, owner, spender)
 }
 
 // BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
 //
 // Solidity: function balanceOf(address account) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) BalanceOf(opts *bind.CallOpts, account common.Address) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) BalanceOf(opts *bind.CallOpts, account common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "balanceOf", account)
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "balanceOf", account)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -262,23 +262,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) BalanceOf(opts *bind.CallOp
 // BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
 //
 // Solidity: function balanceOf(address account) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) BalanceOf(account common.Address) (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.BalanceOf(&_VolcanoERC720Token.CallOpts, account)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) BalanceOf(account common.Address) (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.BalanceOf(&_VolcanoERC20Token.CallOpts, account)
 }
 
 // BalanceOf is a free data retrieval call binding the contract method 0x70a08231.
 //
 // Solidity: function balanceOf(address account) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) BalanceOf(account common.Address) (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.BalanceOf(&_VolcanoERC720Token.CallOpts, account)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) BalanceOf(account common.Address) (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.BalanceOf(&_VolcanoERC20Token.CallOpts, account)
 }
 
 // Cap is a free data retrieval call binding the contract method 0x355274ea.
 //
 // Solidity: function cap() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Cap(opts *bind.CallOpts) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Cap(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "cap")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "cap")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -293,23 +293,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Cap(opts *bind.CallOpts) (*
 // Cap is a free data retrieval call binding the contract method 0x355274ea.
 //
 // Solidity: function cap() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Cap() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.Cap(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Cap() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.Cap(&_VolcanoERC20Token.CallOpts)
 }
 
 // Cap is a free data retrieval call binding the contract method 0x355274ea.
 //
 // Solidity: function cap() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Cap() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.Cap(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Cap() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.Cap(&_VolcanoERC20Token.CallOpts)
 }
 
 // ContractURI is a free data retrieval call binding the contract method 0xe8a3d485.
 //
 // Solidity: function contractURI() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) ContractURI(opts *bind.CallOpts) (string, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) ContractURI(opts *bind.CallOpts) (string, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "contractURI")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "contractURI")
 
 	if err != nil {
 		return *new(string), err
@@ -324,23 +324,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) ContractURI(opts *bind.Call
 // ContractURI is a free data retrieval call binding the contract method 0xe8a3d485.
 //
 // Solidity: function contractURI() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) ContractURI() (string, error) {
-	return _VolcanoERC720Token.Contract.ContractURI(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) ContractURI() (string, error) {
+	return _VolcanoERC20Token.Contract.ContractURI(&_VolcanoERC20Token.CallOpts)
 }
 
 // ContractURI is a free data retrieval call binding the contract method 0xe8a3d485.
 //
 // Solidity: function contractURI() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) ContractURI() (string, error) {
-	return _VolcanoERC720Token.Contract.ContractURI(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) ContractURI() (string, error) {
+	return _VolcanoERC20Token.Contract.ContractURI(&_VolcanoERC20Token.CallOpts)
 }
 
 // Decimals is a free data retrieval call binding the contract method 0x313ce567.
 //
 // Solidity: function decimals() view returns(uint8)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Decimals(opts *bind.CallOpts) (uint8, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Decimals(opts *bind.CallOpts) (uint8, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "decimals")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "decimals")
 
 	if err != nil {
 		return *new(uint8), err
@@ -355,21 +355,21 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Decimals(opts *bind.CallOpt
 // Decimals is a free data retrieval call binding the contract method 0x313ce567.
 //
 // Solidity: function decimals() view returns(uint8)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Decimals() (uint8, error) {
-	return _VolcanoERC720Token.Contract.Decimals(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Decimals() (uint8, error) {
+	return _VolcanoERC20Token.Contract.Decimals(&_VolcanoERC20Token.CallOpts)
 }
 
 // Decimals is a free data retrieval call binding the contract method 0x313ce567.
 //
 // Solidity: function decimals() view returns(uint8)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Decimals() (uint8, error) {
-	return _VolcanoERC720Token.Contract.Decimals(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Decimals() (uint8, error) {
+	return _VolcanoERC20Token.Contract.Decimals(&_VolcanoERC20Token.CallOpts)
 }
 
 // Eip712Domain is a free data retrieval call binding the contract method 0x84b0196e.
 //
 // Solidity: function eip712Domain() view returns(bytes1 fields, string name, string version, uint256 chainId, address verifyingContract, bytes32 salt, uint256[] extensions)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Eip712Domain(opts *bind.CallOpts) (struct {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Eip712Domain(opts *bind.CallOpts) (struct {
 	Fields            [1]byte
 	Name              string
 	Version           string
@@ -379,7 +379,7 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Eip712Domain(opts *bind.Cal
 	Extensions        []*big.Int
 }, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "eip712Domain")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "eip712Domain")
 
 	outstruct := new(struct {
 		Fields            [1]byte
@@ -409,7 +409,7 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Eip712Domain(opts *bind.Cal
 // Eip712Domain is a free data retrieval call binding the contract method 0x84b0196e.
 //
 // Solidity: function eip712Domain() view returns(bytes1 fields, string name, string version, uint256 chainId, address verifyingContract, bytes32 salt, uint256[] extensions)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Eip712Domain() (struct {
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Eip712Domain() (struct {
 	Fields            [1]byte
 	Name              string
 	Version           string
@@ -418,13 +418,13 @@ func (_VolcanoERC720Token *VolcanoERC720TokenSession) Eip712Domain() (struct {
 	Salt              [32]byte
 	Extensions        []*big.Int
 }, error) {
-	return _VolcanoERC720Token.Contract.Eip712Domain(&_VolcanoERC720Token.CallOpts)
+	return _VolcanoERC20Token.Contract.Eip712Domain(&_VolcanoERC20Token.CallOpts)
 }
 
 // Eip712Domain is a free data retrieval call binding the contract method 0x84b0196e.
 //
 // Solidity: function eip712Domain() view returns(bytes1 fields, string name, string version, uint256 chainId, address verifyingContract, bytes32 salt, uint256[] extensions)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Eip712Domain() (struct {
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Eip712Domain() (struct {
 	Fields            [1]byte
 	Name              string
 	Version           string
@@ -433,15 +433,46 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Eip712Domain() (stru
 	Salt              [32]byte
 	Extensions        []*big.Int
 }, error) {
-	return _VolcanoERC720Token.Contract.Eip712Domain(&_VolcanoERC720Token.CallOpts)
+	return _VolcanoERC20Token.Contract.Eip712Domain(&_VolcanoERC20Token.CallOpts)
+}
+
+// Factory is a free data retrieval call binding the contract method 0xc45a0155.
+//
+// Solidity: function factory() view returns(address)
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Factory(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "factory")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Factory is a free data retrieval call binding the contract method 0xc45a0155.
+//
+// Solidity: function factory() view returns(address)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Factory() (common.Address, error) {
+	return _VolcanoERC20Token.Contract.Factory(&_VolcanoERC20Token.CallOpts)
+}
+
+// Factory is a free data retrieval call binding the contract method 0xc45a0155.
+//
+// Solidity: function factory() view returns(address)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Factory() (common.Address, error) {
+	return _VolcanoERC20Token.Contract.Factory(&_VolcanoERC20Token.CallOpts)
 }
 
 // InitialReserves is a free data retrieval call binding the contract method 0x87890455.
 //
 // Solidity: function initialReserves() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) InitialReserves(opts *bind.CallOpts) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) InitialReserves(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "initialReserves")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "initialReserves")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -456,23 +487,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) InitialReserves(opts *bind.
 // InitialReserves is a free data retrieval call binding the contract method 0x87890455.
 //
 // Solidity: function initialReserves() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) InitialReserves() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.InitialReserves(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) InitialReserves() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.InitialReserves(&_VolcanoERC20Token.CallOpts)
 }
 
 // InitialReserves is a free data retrieval call binding the contract method 0x87890455.
 //
 // Solidity: function initialReserves() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) InitialReserves() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.InitialReserves(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) InitialReserves() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.InitialReserves(&_VolcanoERC20Token.CallOpts)
 }
 
 // MintBlocksAmount is a free data retrieval call binding the contract method 0x92b52b8e.
 //
 // Solidity: function mintBlocksAmount() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) MintBlocksAmount(opts *bind.CallOpts) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) MintBlocksAmount(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "mintBlocksAmount")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "mintBlocksAmount")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -487,23 +518,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) MintBlocksAmount(opts *bind
 // MintBlocksAmount is a free data retrieval call binding the contract method 0x92b52b8e.
 //
 // Solidity: function mintBlocksAmount() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) MintBlocksAmount() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.MintBlocksAmount(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) MintBlocksAmount() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.MintBlocksAmount(&_VolcanoERC20Token.CallOpts)
 }
 
 // MintBlocksAmount is a free data retrieval call binding the contract method 0x92b52b8e.
 //
 // Solidity: function mintBlocksAmount() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) MintBlocksAmount() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.MintBlocksAmount(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) MintBlocksAmount() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.MintBlocksAmount(&_VolcanoERC20Token.CallOpts)
 }
 
 // MintBlocksFee is a free data retrieval call binding the contract method 0x63441ee2.
 //
 // Solidity: function mintBlocksFee() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) MintBlocksFee(opts *bind.CallOpts) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) MintBlocksFee(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "mintBlocksFee")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "mintBlocksFee")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -518,23 +549,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) MintBlocksFee(opts *bind.Ca
 // MintBlocksFee is a free data retrieval call binding the contract method 0x63441ee2.
 //
 // Solidity: function mintBlocksFee() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) MintBlocksFee() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.MintBlocksFee(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) MintBlocksFee() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.MintBlocksFee(&_VolcanoERC20Token.CallOpts)
 }
 
 // MintBlocksFee is a free data retrieval call binding the contract method 0x63441ee2.
 //
 // Solidity: function mintBlocksFee() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) MintBlocksFee() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.MintBlocksFee(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) MintBlocksFee() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.MintBlocksFee(&_VolcanoERC20Token.CallOpts)
 }
 
 // MintBlocksMaxSupply is a free data retrieval call binding the contract method 0xbbb1fd51.
 //
 // Solidity: function mintBlocksMaxSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) MintBlocksMaxSupply(opts *bind.CallOpts) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) MintBlocksMaxSupply(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "mintBlocksMaxSupply")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "mintBlocksMaxSupply")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -549,23 +580,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) MintBlocksMaxSupply(opts *b
 // MintBlocksMaxSupply is a free data retrieval call binding the contract method 0xbbb1fd51.
 //
 // Solidity: function mintBlocksMaxSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) MintBlocksMaxSupply() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.MintBlocksMaxSupply(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) MintBlocksMaxSupply() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.MintBlocksMaxSupply(&_VolcanoERC20Token.CallOpts)
 }
 
 // MintBlocksMaxSupply is a free data retrieval call binding the contract method 0xbbb1fd51.
 //
 // Solidity: function mintBlocksMaxSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) MintBlocksMaxSupply() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.MintBlocksMaxSupply(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) MintBlocksMaxSupply() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.MintBlocksMaxSupply(&_VolcanoERC20Token.CallOpts)
 }
 
 // MintBlocksSupply is a free data retrieval call binding the contract method 0xcf82f26d.
 //
 // Solidity: function mintBlocksSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) MintBlocksSupply(opts *bind.CallOpts) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) MintBlocksSupply(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "mintBlocksSupply")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "mintBlocksSupply")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -580,23 +611,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) MintBlocksSupply(opts *bind
 // MintBlocksSupply is a free data retrieval call binding the contract method 0xcf82f26d.
 //
 // Solidity: function mintBlocksSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) MintBlocksSupply() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.MintBlocksSupply(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) MintBlocksSupply() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.MintBlocksSupply(&_VolcanoERC20Token.CallOpts)
 }
 
 // MintBlocksSupply is a free data retrieval call binding the contract method 0xcf82f26d.
 //
 // Solidity: function mintBlocksSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) MintBlocksSupply() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.MintBlocksSupply(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) MintBlocksSupply() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.MintBlocksSupply(&_VolcanoERC20Token.CallOpts)
 }
 
 // Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
 // Solidity: function name() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Name(opts *bind.CallOpts) (string, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Name(opts *bind.CallOpts) (string, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "name")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "name")
 
 	if err != nil {
 		return *new(string), err
@@ -611,23 +642,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Name(opts *bind.CallOpts) (
 // Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
 // Solidity: function name() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Name() (string, error) {
-	return _VolcanoERC720Token.Contract.Name(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Name() (string, error) {
+	return _VolcanoERC20Token.Contract.Name(&_VolcanoERC20Token.CallOpts)
 }
 
 // Name is a free data retrieval call binding the contract method 0x06fdde03.
 //
 // Solidity: function name() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Name() (string, error) {
-	return _VolcanoERC720Token.Contract.Name(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Name() (string, error) {
+	return _VolcanoERC20Token.Contract.Name(&_VolcanoERC20Token.CallOpts)
 }
 
 // Nonces is a free data retrieval call binding the contract method 0x7ecebe00.
 //
 // Solidity: function nonces(address owner) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Nonces(opts *bind.CallOpts, owner common.Address) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Nonces(opts *bind.CallOpts, owner common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "nonces", owner)
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "nonces", owner)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -642,23 +673,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Nonces(opts *bind.CallOpts,
 // Nonces is a free data retrieval call binding the contract method 0x7ecebe00.
 //
 // Solidity: function nonces(address owner) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Nonces(owner common.Address) (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.Nonces(&_VolcanoERC720Token.CallOpts, owner)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Nonces(owner common.Address) (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.Nonces(&_VolcanoERC20Token.CallOpts, owner)
 }
 
 // Nonces is a free data retrieval call binding the contract method 0x7ecebe00.
 //
 // Solidity: function nonces(address owner) view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Nonces(owner common.Address) (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.Nonces(&_VolcanoERC720Token.CallOpts, owner)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Nonces(owner common.Address) (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.Nonces(&_VolcanoERC20Token.CallOpts, owner)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
 //
 // Solidity: function owner() view returns(address)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "owner")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "owner")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -673,23 +704,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Owner(opts *bind.CallOpts) 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
 //
 // Solidity: function owner() view returns(address)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Owner() (common.Address, error) {
-	return _VolcanoERC720Token.Contract.Owner(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Owner() (common.Address, error) {
+	return _VolcanoERC20Token.Contract.Owner(&_VolcanoERC20Token.CallOpts)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
 //
 // Solidity: function owner() view returns(address)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Owner() (common.Address, error) {
-	return _VolcanoERC720Token.Contract.Owner(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Owner() (common.Address, error) {
+	return _VolcanoERC20Token.Contract.Owner(&_VolcanoERC20Token.CallOpts)
 }
 
 // RouterAddress is a free data retrieval call binding the contract method 0x3268cc56.
 //
 // Solidity: function routerAddress() view returns(address)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) RouterAddress(opts *bind.CallOpts) (common.Address, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) RouterAddress(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "routerAddress")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "routerAddress")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -704,23 +735,116 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) RouterAddress(opts *bind.Ca
 // RouterAddress is a free data retrieval call binding the contract method 0x3268cc56.
 //
 // Solidity: function routerAddress() view returns(address)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) RouterAddress() (common.Address, error) {
-	return _VolcanoERC720Token.Contract.RouterAddress(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) RouterAddress() (common.Address, error) {
+	return _VolcanoERC20Token.Contract.RouterAddress(&_VolcanoERC20Token.CallOpts)
 }
 
 // RouterAddress is a free data retrieval call binding the contract method 0x3268cc56.
 //
 // Solidity: function routerAddress() view returns(address)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) RouterAddress() (common.Address, error) {
-	return _VolcanoERC720Token.Contract.RouterAddress(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) RouterAddress() (common.Address, error) {
+	return _VolcanoERC20Token.Contract.RouterAddress(&_VolcanoERC20Token.CallOpts)
+}
+
+// RouterAddressV3Fee is a free data retrieval call binding the contract method 0xa09d8698.
+//
+// Solidity: function routerAddressV3Fee() view returns(uint24)
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) RouterAddressV3Fee(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "routerAddressV3Fee")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// RouterAddressV3Fee is a free data retrieval call binding the contract method 0xa09d8698.
+//
+// Solidity: function routerAddressV3Fee() view returns(uint24)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) RouterAddressV3Fee() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.RouterAddressV3Fee(&_VolcanoERC20Token.CallOpts)
+}
+
+// RouterAddressV3Fee is a free data retrieval call binding the contract method 0xa09d8698.
+//
+// Solidity: function routerAddressV3Fee() view returns(uint24)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) RouterAddressV3Fee() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.RouterAddressV3Fee(&_VolcanoERC20Token.CallOpts)
+}
+
+// StakingAddress is a free data retrieval call binding the contract method 0xd7b4be24.
+//
+// Solidity: function stakingAddress() view returns(address)
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) StakingAddress(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "stakingAddress")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// StakingAddress is a free data retrieval call binding the contract method 0xd7b4be24.
+//
+// Solidity: function stakingAddress() view returns(address)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) StakingAddress() (common.Address, error) {
+	return _VolcanoERC20Token.Contract.StakingAddress(&_VolcanoERC20Token.CallOpts)
+}
+
+// StakingAddress is a free data retrieval call binding the contract method 0xd7b4be24.
+//
+// Solidity: function stakingAddress() view returns(address)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) StakingAddress() (common.Address, error) {
+	return _VolcanoERC20Token.Contract.StakingAddress(&_VolcanoERC20Token.CallOpts)
+}
+
+// StakingAmount is a free data retrieval call binding the contract method 0x739a3e02.
+//
+// Solidity: function stakingAmount() view returns(uint256)
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) StakingAmount(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "stakingAmount")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// StakingAmount is a free data retrieval call binding the contract method 0x739a3e02.
+//
+// Solidity: function stakingAmount() view returns(uint256)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) StakingAmount() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.StakingAmount(&_VolcanoERC20Token.CallOpts)
+}
+
+// StakingAmount is a free data retrieval call binding the contract method 0x739a3e02.
+//
+// Solidity: function stakingAmount() view returns(uint256)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) StakingAmount() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.StakingAmount(&_VolcanoERC20Token.CallOpts)
 }
 
 // Symbol is a free data retrieval call binding the contract method 0x95d89b41.
 //
 // Solidity: function symbol() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Symbol(opts *bind.CallOpts) (string, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) Symbol(opts *bind.CallOpts) (string, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "symbol")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "symbol")
 
 	if err != nil {
 		return *new(string), err
@@ -735,23 +859,23 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) Symbol(opts *bind.CallOpts)
 // Symbol is a free data retrieval call binding the contract method 0x95d89b41.
 //
 // Solidity: function symbol() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Symbol() (string, error) {
-	return _VolcanoERC720Token.Contract.Symbol(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Symbol() (string, error) {
+	return _VolcanoERC20Token.Contract.Symbol(&_VolcanoERC20Token.CallOpts)
 }
 
 // Symbol is a free data retrieval call binding the contract method 0x95d89b41.
 //
 // Solidity: function symbol() view returns(string)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) Symbol() (string, error) {
-	return _VolcanoERC720Token.Contract.Symbol(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) Symbol() (string, error) {
+	return _VolcanoERC20Token.Contract.Symbol(&_VolcanoERC20Token.CallOpts)
 }
 
 // TotalSupply is a free data retrieval call binding the contract method 0x18160ddd.
 //
 // Solidity: function totalSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCaller) TotalSupply(opts *bind.CallOpts) (*big.Int, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) TotalSupply(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _VolcanoERC720Token.contract.Call(opts, &out, "totalSupply")
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "totalSupply")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -766,335 +890,429 @@ func (_VolcanoERC720Token *VolcanoERC720TokenCaller) TotalSupply(opts *bind.Call
 // TotalSupply is a free data retrieval call binding the contract method 0x18160ddd.
 //
 // Solidity: function totalSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) TotalSupply() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.TotalSupply(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) TotalSupply() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.TotalSupply(&_VolcanoERC20Token.CallOpts)
 }
 
 // TotalSupply is a free data retrieval call binding the contract method 0x18160ddd.
 //
 // Solidity: function totalSupply() view returns(uint256)
-func (_VolcanoERC720Token *VolcanoERC720TokenCallerSession) TotalSupply() (*big.Int, error) {
-	return _VolcanoERC720Token.Contract.TotalSupply(&_VolcanoERC720Token.CallOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) TotalSupply() (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.TotalSupply(&_VolcanoERC20Token.CallOpts)
+}
+
+// V3positions is a free data retrieval call binding the contract method 0x0798840c.
+//
+// Solidity: function v3positions(address ) view returns(uint256)
+func (_VolcanoERC20Token *VolcanoERC20TokenCaller) V3positions(opts *bind.CallOpts, arg0 common.Address) (*big.Int, error) {
+	var out []interface{}
+	err := _VolcanoERC20Token.contract.Call(opts, &out, "v3positions", arg0)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// V3positions is a free data retrieval call binding the contract method 0x0798840c.
+//
+// Solidity: function v3positions(address ) view returns(uint256)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) V3positions(arg0 common.Address) (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.V3positions(&_VolcanoERC20Token.CallOpts, arg0)
+}
+
+// V3positions is a free data retrieval call binding the contract method 0x0798840c.
+//
+// Solidity: function v3positions(address ) view returns(uint256)
+func (_VolcanoERC20Token *VolcanoERC20TokenCallerSession) V3positions(arg0 common.Address) (*big.Int, error) {
+	return _VolcanoERC20Token.Contract.V3positions(&_VolcanoERC20Token.CallOpts, arg0)
 }
 
 // Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
 //
 // Solidity: function approve(address spender, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) Approve(opts *bind.TransactOpts, spender common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "approve", spender, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) Approve(opts *bind.TransactOpts, spender common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "approve", spender, amount)
 }
 
 // Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
 //
 // Solidity: function approve(address spender, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Approve(spender common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Approve(&_VolcanoERC720Token.TransactOpts, spender, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Approve(spender common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Approve(&_VolcanoERC20Token.TransactOpts, spender, amount)
 }
 
 // Approve is a paid mutator transaction binding the contract method 0x095ea7b3.
 //
 // Solidity: function approve(address spender, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) Approve(spender common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Approve(&_VolcanoERC720Token.TransactOpts, spender, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) Approve(spender common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Approve(&_VolcanoERC20Token.TransactOpts, spender, amount)
 }
 
 // Burn is a paid mutator transaction binding the contract method 0x42966c68.
 //
 // Solidity: function burn(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) Burn(opts *bind.TransactOpts, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "burn", amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) Burn(opts *bind.TransactOpts, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "burn", amount)
 }
 
 // Burn is a paid mutator transaction binding the contract method 0x42966c68.
 //
 // Solidity: function burn(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Burn(amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Burn(&_VolcanoERC720Token.TransactOpts, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Burn(amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Burn(&_VolcanoERC20Token.TransactOpts, amount)
 }
 
 // Burn is a paid mutator transaction binding the contract method 0x42966c68.
 //
 // Solidity: function burn(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) Burn(amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Burn(&_VolcanoERC720Token.TransactOpts, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) Burn(amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Burn(&_VolcanoERC20Token.TransactOpts, amount)
 }
 
 // BurnFrom is a paid mutator transaction binding the contract method 0x79cc6790.
 //
 // Solidity: function burnFrom(address account, uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) BurnFrom(opts *bind.TransactOpts, account common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "burnFrom", account, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) BurnFrom(opts *bind.TransactOpts, account common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "burnFrom", account, amount)
 }
 
 // BurnFrom is a paid mutator transaction binding the contract method 0x79cc6790.
 //
 // Solidity: function burnFrom(address account, uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) BurnFrom(account common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.BurnFrom(&_VolcanoERC720Token.TransactOpts, account, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) BurnFrom(account common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.BurnFrom(&_VolcanoERC20Token.TransactOpts, account, amount)
 }
 
 // BurnFrom is a paid mutator transaction binding the contract method 0x79cc6790.
 //
 // Solidity: function burnFrom(address account, uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) BurnFrom(account common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.BurnFrom(&_VolcanoERC720Token.TransactOpts, account, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) BurnFrom(account common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.BurnFrom(&_VolcanoERC20Token.TransactOpts, account, amount)
+}
+
+// BurnV3Position is a paid mutator transaction binding the contract method 0x01499963.
+//
+// Solidity: function burnV3Position(address positionOwner) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) BurnV3Position(opts *bind.TransactOpts, positionOwner common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "burnV3Position", positionOwner)
+}
+
+// BurnV3Position is a paid mutator transaction binding the contract method 0x01499963.
+//
+// Solidity: function burnV3Position(address positionOwner) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) BurnV3Position(positionOwner common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.BurnV3Position(&_VolcanoERC20Token.TransactOpts, positionOwner)
+}
+
+// BurnV3Position is a paid mutator transaction binding the contract method 0x01499963.
+//
+// Solidity: function burnV3Position(address positionOwner) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) BurnV3Position(positionOwner common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.BurnV3Position(&_VolcanoERC20Token.TransactOpts, positionOwner)
+}
+
+// CollectV3Position is a paid mutator transaction binding the contract method 0xb7fe5eb6.
+//
+// Solidity: function collectV3Position(uint256 tokenid) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) CollectV3Position(opts *bind.TransactOpts, tokenid *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "collectV3Position", tokenid)
+}
+
+// CollectV3Position is a paid mutator transaction binding the contract method 0xb7fe5eb6.
+//
+// Solidity: function collectV3Position(uint256 tokenid) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) CollectV3Position(tokenid *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.CollectV3Position(&_VolcanoERC20Token.TransactOpts, tokenid)
+}
+
+// CollectV3Position is a paid mutator transaction binding the contract method 0xb7fe5eb6.
+//
+// Solidity: function collectV3Position(uint256 tokenid) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) CollectV3Position(tokenid *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.CollectV3Position(&_VolcanoERC20Token.TransactOpts, tokenid)
 }
 
 // DecreaseAllowance is a paid mutator transaction binding the contract method 0xa457c2d7.
 //
 // Solidity: function decreaseAllowance(address spender, uint256 subtractedValue) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) DecreaseAllowance(opts *bind.TransactOpts, spender common.Address, subtractedValue *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "decreaseAllowance", spender, subtractedValue)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) DecreaseAllowance(opts *bind.TransactOpts, spender common.Address, subtractedValue *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "decreaseAllowance", spender, subtractedValue)
 }
 
 // DecreaseAllowance is a paid mutator transaction binding the contract method 0xa457c2d7.
 //
 // Solidity: function decreaseAllowance(address spender, uint256 subtractedValue) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) DecreaseAllowance(spender common.Address, subtractedValue *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.DecreaseAllowance(&_VolcanoERC720Token.TransactOpts, spender, subtractedValue)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) DecreaseAllowance(spender common.Address, subtractedValue *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.DecreaseAllowance(&_VolcanoERC20Token.TransactOpts, spender, subtractedValue)
 }
 
 // DecreaseAllowance is a paid mutator transaction binding the contract method 0xa457c2d7.
 //
 // Solidity: function decreaseAllowance(address spender, uint256 subtractedValue) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) DecreaseAllowance(spender common.Address, subtractedValue *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.DecreaseAllowance(&_VolcanoERC720Token.TransactOpts, spender, subtractedValue)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) DecreaseAllowance(spender common.Address, subtractedValue *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.DecreaseAllowance(&_VolcanoERC20Token.TransactOpts, spender, subtractedValue)
 }
 
 // IncreaseAllowance is a paid mutator transaction binding the contract method 0x39509351.
 //
 // Solidity: function increaseAllowance(address spender, uint256 addedValue) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) IncreaseAllowance(opts *bind.TransactOpts, spender common.Address, addedValue *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "increaseAllowance", spender, addedValue)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) IncreaseAllowance(opts *bind.TransactOpts, spender common.Address, addedValue *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "increaseAllowance", spender, addedValue)
 }
 
 // IncreaseAllowance is a paid mutator transaction binding the contract method 0x39509351.
 //
 // Solidity: function increaseAllowance(address spender, uint256 addedValue) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) IncreaseAllowance(spender common.Address, addedValue *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.IncreaseAllowance(&_VolcanoERC720Token.TransactOpts, spender, addedValue)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) IncreaseAllowance(spender common.Address, addedValue *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.IncreaseAllowance(&_VolcanoERC20Token.TransactOpts, spender, addedValue)
 }
 
 // IncreaseAllowance is a paid mutator transaction binding the contract method 0x39509351.
 //
 // Solidity: function increaseAllowance(address spender, uint256 addedValue) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) IncreaseAllowance(spender common.Address, addedValue *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.IncreaseAllowance(&_VolcanoERC720Token.TransactOpts, spender, addedValue)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) IncreaseAllowance(spender common.Address, addedValue *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.IncreaseAllowance(&_VolcanoERC20Token.TransactOpts, spender, addedValue)
 }
 
-// MintBlock is a paid mutator transaction binding the contract method 0xf35abe09.
+// InitilizeStaking is a paid mutator transaction binding the contract method 0x86372418.
 //
-// Solidity: function mintBlock(address to) payable returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) MintBlock(opts *bind.TransactOpts, to common.Address) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "mintBlock", to)
+// Solidity: function initilizeStaking(address _stakingAddress) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) InitilizeStaking(opts *bind.TransactOpts, _stakingAddress common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "initilizeStaking", _stakingAddress)
 }
 
-// MintBlock is a paid mutator transaction binding the contract method 0xf35abe09.
+// InitilizeStaking is a paid mutator transaction binding the contract method 0x86372418.
 //
-// Solidity: function mintBlock(address to) payable returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) MintBlock(to common.Address) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.MintBlock(&_VolcanoERC720Token.TransactOpts, to)
+// Solidity: function initilizeStaking(address _stakingAddress) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) InitilizeStaking(_stakingAddress common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.InitilizeStaking(&_VolcanoERC20Token.TransactOpts, _stakingAddress)
 }
 
-// MintBlock is a paid mutator transaction binding the contract method 0xf35abe09.
+// InitilizeStaking is a paid mutator transaction binding the contract method 0x86372418.
 //
-// Solidity: function mintBlock(address to) payable returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) MintBlock(to common.Address) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.MintBlock(&_VolcanoERC720Token.TransactOpts, to)
+// Solidity: function initilizeStaking(address _stakingAddress) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) InitilizeStaking(_stakingAddress common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.InitilizeStaking(&_VolcanoERC20Token.TransactOpts, _stakingAddress)
+}
+
+// MintBlocks is a paid mutator transaction binding the contract method 0xd64d2031.
+//
+// Solidity: function mintBlocks(address to, uint256 count, bool refund) payable returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) MintBlocks(opts *bind.TransactOpts, to common.Address, count *big.Int, refund bool) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "mintBlocks", to, count, refund)
+}
+
+// MintBlocks is a paid mutator transaction binding the contract method 0xd64d2031.
+//
+// Solidity: function mintBlocks(address to, uint256 count, bool refund) payable returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) MintBlocks(to common.Address, count *big.Int, refund bool) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.MintBlocks(&_VolcanoERC20Token.TransactOpts, to, count, refund)
+}
+
+// MintBlocks is a paid mutator transaction binding the contract method 0xd64d2031.
+//
+// Solidity: function mintBlocks(address to, uint256 count, bool refund) payable returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) MintBlocks(to common.Address, count *big.Int, refund bool) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.MintBlocks(&_VolcanoERC20Token.TransactOpts, to, count, refund)
 }
 
 // Permit is a paid mutator transaction binding the contract method 0xd505accf.
 //
 // Solidity: function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) Permit(opts *bind.TransactOpts, owner common.Address, spender common.Address, value *big.Int, deadline *big.Int, v uint8, r [32]byte, s [32]byte) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "permit", owner, spender, value, deadline, v, r, s)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) Permit(opts *bind.TransactOpts, owner common.Address, spender common.Address, value *big.Int, deadline *big.Int, v uint8, r [32]byte, s [32]byte) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "permit", owner, spender, value, deadline, v, r, s)
 }
 
 // Permit is a paid mutator transaction binding the contract method 0xd505accf.
 //
 // Solidity: function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Permit(owner common.Address, spender common.Address, value *big.Int, deadline *big.Int, v uint8, r [32]byte, s [32]byte) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Permit(&_VolcanoERC720Token.TransactOpts, owner, spender, value, deadline, v, r, s)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Permit(owner common.Address, spender common.Address, value *big.Int, deadline *big.Int, v uint8, r [32]byte, s [32]byte) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Permit(&_VolcanoERC20Token.TransactOpts, owner, spender, value, deadline, v, r, s)
 }
 
 // Permit is a paid mutator transaction binding the contract method 0xd505accf.
 //
 // Solidity: function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) Permit(owner common.Address, spender common.Address, value *big.Int, deadline *big.Int, v uint8, r [32]byte, s [32]byte) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Permit(&_VolcanoERC720Token.TransactOpts, owner, spender, value, deadline, v, r, s)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) Permit(owner common.Address, spender common.Address, value *big.Int, deadline *big.Int, v uint8, r [32]byte, s [32]byte) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Permit(&_VolcanoERC20Token.TransactOpts, owner, spender, value, deadline, v, r, s)
 }
 
 // RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
 //
 // Solidity: function renounceOwnership() returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "renounceOwnership")
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "renounceOwnership")
 }
 
 // RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
 //
 // Solidity: function renounceOwnership() returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) RenounceOwnership() (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.RenounceOwnership(&_VolcanoERC720Token.TransactOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) RenounceOwnership() (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.RenounceOwnership(&_VolcanoERC20Token.TransactOpts)
 }
 
 // RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
 //
 // Solidity: function renounceOwnership() returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) RenounceOwnership() (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.RenounceOwnership(&_VolcanoERC720Token.TransactOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) RenounceOwnership() (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.RenounceOwnership(&_VolcanoERC20Token.TransactOpts)
 }
 
 // Transfer is a paid mutator transaction binding the contract method 0xa9059cbb.
 //
 // Solidity: function transfer(address to, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) Transfer(opts *bind.TransactOpts, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "transfer", to, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) Transfer(opts *bind.TransactOpts, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "transfer", to, amount)
 }
 
 // Transfer is a paid mutator transaction binding the contract method 0xa9059cbb.
 //
 // Solidity: function transfer(address to, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Transfer(to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Transfer(&_VolcanoERC720Token.TransactOpts, to, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Transfer(to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Transfer(&_VolcanoERC20Token.TransactOpts, to, amount)
 }
 
 // Transfer is a paid mutator transaction binding the contract method 0xa9059cbb.
 //
 // Solidity: function transfer(address to, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) Transfer(to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Transfer(&_VolcanoERC720Token.TransactOpts, to, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) Transfer(to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Transfer(&_VolcanoERC20Token.TransactOpts, to, amount)
 }
 
 // TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
 //
 // Solidity: function transferFrom(address from, address to, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) TransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "transferFrom", from, to, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) TransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "transferFrom", from, to, amount)
 }
 
 // TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
 //
 // Solidity: function transferFrom(address from, address to, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) TransferFrom(from common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.TransferFrom(&_VolcanoERC720Token.TransactOpts, from, to, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) TransferFrom(from common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.TransferFrom(&_VolcanoERC20Token.TransactOpts, from, to, amount)
 }
 
 // TransferFrom is a paid mutator transaction binding the contract method 0x23b872dd.
 //
 // Solidity: function transferFrom(address from, address to, uint256 amount) returns(bool)
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) TransferFrom(from common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.TransferFrom(&_VolcanoERC720Token.TransactOpts, from, to, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) TransferFrom(from common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.TransferFrom(&_VolcanoERC20Token.TransactOpts, from, to, amount)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "transferOwnership", newOwner)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "transferOwnership", newOwner)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.TransferOwnership(&_VolcanoERC720Token.TransactOpts, newOwner)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.TransferOwnership(&_VolcanoERC20Token.TransactOpts, newOwner)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.TransferOwnership(&_VolcanoERC720Token.TransactOpts, newOwner)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.TransferOwnership(&_VolcanoERC20Token.TransactOpts, newOwner)
 }
 
 // UpdateContractURI is a paid mutator transaction binding the contract method 0x7e5b1e24.
 //
 // Solidity: function updateContractURI(string _uri) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) UpdateContractURI(opts *bind.TransactOpts, _uri string) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "updateContractURI", _uri)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) UpdateContractURI(opts *bind.TransactOpts, _uri string) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "updateContractURI", _uri)
 }
 
 // UpdateContractURI is a paid mutator transaction binding the contract method 0x7e5b1e24.
 //
 // Solidity: function updateContractURI(string _uri) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) UpdateContractURI(_uri string) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.UpdateContractURI(&_VolcanoERC720Token.TransactOpts, _uri)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) UpdateContractURI(_uri string) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.UpdateContractURI(&_VolcanoERC20Token.TransactOpts, _uri)
 }
 
 // UpdateContractURI is a paid mutator transaction binding the contract method 0x7e5b1e24.
 //
 // Solidity: function updateContractURI(string _uri) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) UpdateContractURI(_uri string) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.UpdateContractURI(&_VolcanoERC720Token.TransactOpts, _uri)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) UpdateContractURI(_uri string) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.UpdateContractURI(&_VolcanoERC20Token.TransactOpts, _uri)
 }
 
 // WithdrawETH is a paid mutator transaction binding the contract method 0xf14210a6.
 //
 // Solidity: function withdrawETH(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) WithdrawETH(opts *bind.TransactOpts, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "withdrawETH", amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) WithdrawETH(opts *bind.TransactOpts, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "withdrawETH", amount)
 }
 
 // WithdrawETH is a paid mutator transaction binding the contract method 0xf14210a6.
 //
 // Solidity: function withdrawETH(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) WithdrawETH(amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.WithdrawETH(&_VolcanoERC720Token.TransactOpts, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) WithdrawETH(amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.WithdrawETH(&_VolcanoERC20Token.TransactOpts, amount)
 }
 
 // WithdrawETH is a paid mutator transaction binding the contract method 0xf14210a6.
 //
 // Solidity: function withdrawETH(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) WithdrawETH(amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.WithdrawETH(&_VolcanoERC720Token.TransactOpts, amount)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) WithdrawETH(amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.WithdrawETH(&_VolcanoERC20Token.TransactOpts, amount)
 }
 
-// WithdrawTokens is a paid mutator transaction binding the contract method 0x315a095d.
+// WithdrawTokens is a paid mutator transaction binding the contract method 0x06b091f9.
 //
-// Solidity: function withdrawTokens(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) WithdrawTokens(opts *bind.TransactOpts, amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.Transact(opts, "withdrawTokens", amount)
+// Solidity: function withdrawTokens(address token, uint256 amount) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) WithdrawTokens(opts *bind.TransactOpts, token common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.Transact(opts, "withdrawTokens", token, amount)
 }
 
-// WithdrawTokens is a paid mutator transaction binding the contract method 0x315a095d.
+// WithdrawTokens is a paid mutator transaction binding the contract method 0x06b091f9.
 //
-// Solidity: function withdrawTokens(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) WithdrawTokens(amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.WithdrawTokens(&_VolcanoERC720Token.TransactOpts, amount)
+// Solidity: function withdrawTokens(address token, uint256 amount) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) WithdrawTokens(token common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.WithdrawTokens(&_VolcanoERC20Token.TransactOpts, token, amount)
 }
 
-// WithdrawTokens is a paid mutator transaction binding the contract method 0x315a095d.
+// WithdrawTokens is a paid mutator transaction binding the contract method 0x06b091f9.
 //
-// Solidity: function withdrawTokens(uint256 amount) returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) WithdrawTokens(amount *big.Int) (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.WithdrawTokens(&_VolcanoERC720Token.TransactOpts, amount)
+// Solidity: function withdrawTokens(address token, uint256 amount) returns()
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) WithdrawTokens(token common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.WithdrawTokens(&_VolcanoERC20Token.TransactOpts, token, amount)
 }
 
 // Receive is a paid mutator transaction binding the contract receive function.
 //
 // Solidity: receive() payable returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactor) Receive(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _VolcanoERC720Token.contract.RawTransact(opts, nil) // calldata is disallowed for receive function
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactor) Receive(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _VolcanoERC20Token.contract.RawTransact(opts, nil) // calldata is disallowed for receive function
 }
 
 // Receive is a paid mutator transaction binding the contract receive function.
 //
 // Solidity: receive() payable returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenSession) Receive() (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Receive(&_VolcanoERC720Token.TransactOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenSession) Receive() (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Receive(&_VolcanoERC20Token.TransactOpts)
 }
 
 // Receive is a paid mutator transaction binding the contract receive function.
 //
 // Solidity: receive() payable returns()
-func (_VolcanoERC720Token *VolcanoERC720TokenTransactorSession) Receive() (*types.Transaction, error) {
-	return _VolcanoERC720Token.Contract.Receive(&_VolcanoERC720Token.TransactOpts)
+func (_VolcanoERC20Token *VolcanoERC20TokenTransactorSession) Receive() (*types.Transaction, error) {
+	return _VolcanoERC20Token.Contract.Receive(&_VolcanoERC20Token.TransactOpts)
 }
 
-// VolcanoERC720TokenApprovalIterator is returned from FilterApproval and is used to iterate over the raw logs and unpacked data for Approval events raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenApprovalIterator struct {
-	Event *VolcanoERC720TokenApproval // Event containing the contract specifics and raw log
+// VolcanoERC20TokenApprovalIterator is returned from FilterApproval and is used to iterate over the raw logs and unpacked data for Approval events raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenApprovalIterator struct {
+	Event *VolcanoERC20TokenApproval // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1108,7 +1326,7 @@ type VolcanoERC720TokenApprovalIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *VolcanoERC720TokenApprovalIterator) Next() bool {
+func (it *VolcanoERC20TokenApprovalIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1117,7 +1335,7 @@ func (it *VolcanoERC720TokenApprovalIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(VolcanoERC720TokenApproval)
+			it.Event = new(VolcanoERC20TokenApproval)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1132,7 +1350,7 @@ func (it *VolcanoERC720TokenApprovalIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(VolcanoERC720TokenApproval)
+		it.Event = new(VolcanoERC20TokenApproval)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1148,19 +1366,19 @@ func (it *VolcanoERC720TokenApprovalIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *VolcanoERC720TokenApprovalIterator) Error() error {
+func (it *VolcanoERC20TokenApprovalIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *VolcanoERC720TokenApprovalIterator) Close() error {
+func (it *VolcanoERC20TokenApprovalIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// VolcanoERC720TokenApproval represents a Approval event raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenApproval struct {
+// VolcanoERC20TokenApproval represents a Approval event raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenApproval struct {
 	Owner   common.Address
 	Spender common.Address
 	Value   *big.Int
@@ -1170,7 +1388,7 @@ type VolcanoERC720TokenApproval struct {
 // FilterApproval is a free log retrieval operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed owner, address indexed spender, uint256 value)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) FilterApproval(opts *bind.FilterOpts, owner []common.Address, spender []common.Address) (*VolcanoERC720TokenApprovalIterator, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) FilterApproval(opts *bind.FilterOpts, owner []common.Address, spender []common.Address) (*VolcanoERC20TokenApprovalIterator, error) {
 
 	var ownerRule []interface{}
 	for _, ownerItem := range owner {
@@ -1181,17 +1399,17 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) FilterApproval(opts *bind
 		spenderRule = append(spenderRule, spenderItem)
 	}
 
-	logs, sub, err := _VolcanoERC720Token.contract.FilterLogs(opts, "Approval", ownerRule, spenderRule)
+	logs, sub, err := _VolcanoERC20Token.contract.FilterLogs(opts, "Approval", ownerRule, spenderRule)
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720TokenApprovalIterator{contract: _VolcanoERC720Token.contract, event: "Approval", logs: logs, sub: sub}, nil
+	return &VolcanoERC20TokenApprovalIterator{contract: _VolcanoERC20Token.contract, event: "Approval", logs: logs, sub: sub}, nil
 }
 
 // WatchApproval is a free log subscription operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed owner, address indexed spender, uint256 value)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *VolcanoERC720TokenApproval, owner []common.Address, spender []common.Address) (event.Subscription, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *VolcanoERC20TokenApproval, owner []common.Address, spender []common.Address) (event.Subscription, error) {
 
 	var ownerRule []interface{}
 	for _, ownerItem := range owner {
@@ -1202,7 +1420,7 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchApproval(opts *bind.
 		spenderRule = append(spenderRule, spenderItem)
 	}
 
-	logs, sub, err := _VolcanoERC720Token.contract.WatchLogs(opts, "Approval", ownerRule, spenderRule)
+	logs, sub, err := _VolcanoERC20Token.contract.WatchLogs(opts, "Approval", ownerRule, spenderRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1212,8 +1430,8 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchApproval(opts *bind.
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(VolcanoERC720TokenApproval)
-				if err := _VolcanoERC720Token.contract.UnpackLog(event, "Approval", log); err != nil {
+				event := new(VolcanoERC20TokenApproval)
+				if err := _VolcanoERC20Token.contract.UnpackLog(event, "Approval", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1237,18 +1455,18 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchApproval(opts *bind.
 // ParseApproval is a log parse operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
 // Solidity: event Approval(address indexed owner, address indexed spender, uint256 value)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) ParseApproval(log types.Log) (*VolcanoERC720TokenApproval, error) {
-	event := new(VolcanoERC720TokenApproval)
-	if err := _VolcanoERC720Token.contract.UnpackLog(event, "Approval", log); err != nil {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) ParseApproval(log types.Log) (*VolcanoERC20TokenApproval, error) {
+	event := new(VolcanoERC20TokenApproval)
+	if err := _VolcanoERC20Token.contract.UnpackLog(event, "Approval", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// VolcanoERC720TokenBlockMintedIterator is returned from FilterBlockMinted and is used to iterate over the raw logs and unpacked data for BlockMinted events raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenBlockMintedIterator struct {
-	Event *VolcanoERC720TokenBlockMinted // Event containing the contract specifics and raw log
+// VolcanoERC20TokenBlocksMintedIterator is returned from FilterBlocksMinted and is used to iterate over the raw logs and unpacked data for BlocksMinted events raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenBlocksMintedIterator struct {
+	Event *VolcanoERC20TokenBlocksMinted // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1262,7 +1480,7 @@ type VolcanoERC720TokenBlockMintedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *VolcanoERC720TokenBlockMintedIterator) Next() bool {
+func (it *VolcanoERC20TokenBlocksMintedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1271,7 +1489,7 @@ func (it *VolcanoERC720TokenBlockMintedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(VolcanoERC720TokenBlockMinted)
+			it.Event = new(VolcanoERC20TokenBlocksMinted)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1286,7 +1504,7 @@ func (it *VolcanoERC720TokenBlockMintedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(VolcanoERC720TokenBlockMinted)
+		it.Event = new(VolcanoERC20TokenBlocksMinted)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1302,41 +1520,42 @@ func (it *VolcanoERC720TokenBlockMintedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *VolcanoERC720TokenBlockMintedIterator) Error() error {
+func (it *VolcanoERC20TokenBlocksMintedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *VolcanoERC720TokenBlockMintedIterator) Close() error {
+func (it *VolcanoERC20TokenBlocksMintedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// VolcanoERC720TokenBlockMinted represents a BlockMinted event raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenBlockMinted struct {
+// VolcanoERC20TokenBlocksMinted represents a BlocksMinted event raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenBlocksMinted struct {
 	Receiver common.Address
+	Count    *big.Int
 	Raw      types.Log // Blockchain specific contextual infos
 }
 
-// FilterBlockMinted is a free log retrieval operation binding the contract event 0x0e9a1ec107d573764d20047a2ac52b16c549f7366e25e13cc1c8437d3fe98b5d.
+// FilterBlocksMinted is a free log retrieval operation binding the contract event 0x50bb62406ff32b2601952fa6d2b8bf6f088dfb08752b3657f13f2f9a9acb27ca.
 //
-// Solidity: event BlockMinted(address receiver)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) FilterBlockMinted(opts *bind.FilterOpts) (*VolcanoERC720TokenBlockMintedIterator, error) {
+// Solidity: event BlocksMinted(address receiver, uint256 count)
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) FilterBlocksMinted(opts *bind.FilterOpts) (*VolcanoERC20TokenBlocksMintedIterator, error) {
 
-	logs, sub, err := _VolcanoERC720Token.contract.FilterLogs(opts, "BlockMinted")
+	logs, sub, err := _VolcanoERC20Token.contract.FilterLogs(opts, "BlocksMinted")
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720TokenBlockMintedIterator{contract: _VolcanoERC720Token.contract, event: "BlockMinted", logs: logs, sub: sub}, nil
+	return &VolcanoERC20TokenBlocksMintedIterator{contract: _VolcanoERC20Token.contract, event: "BlocksMinted", logs: logs, sub: sub}, nil
 }
 
-// WatchBlockMinted is a free log subscription operation binding the contract event 0x0e9a1ec107d573764d20047a2ac52b16c549f7366e25e13cc1c8437d3fe98b5d.
+// WatchBlocksMinted is a free log subscription operation binding the contract event 0x50bb62406ff32b2601952fa6d2b8bf6f088dfb08752b3657f13f2f9a9acb27ca.
 //
-// Solidity: event BlockMinted(address receiver)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchBlockMinted(opts *bind.WatchOpts, sink chan<- *VolcanoERC720TokenBlockMinted) (event.Subscription, error) {
+// Solidity: event BlocksMinted(address receiver, uint256 count)
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) WatchBlocksMinted(opts *bind.WatchOpts, sink chan<- *VolcanoERC20TokenBlocksMinted) (event.Subscription, error) {
 
-	logs, sub, err := _VolcanoERC720Token.contract.WatchLogs(opts, "BlockMinted")
+	logs, sub, err := _VolcanoERC20Token.contract.WatchLogs(opts, "BlocksMinted")
 	if err != nil {
 		return nil, err
 	}
@@ -1346,8 +1565,8 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchBlockMinted(opts *bi
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(VolcanoERC720TokenBlockMinted)
-				if err := _VolcanoERC720Token.contract.UnpackLog(event, "BlockMinted", log); err != nil {
+				event := new(VolcanoERC20TokenBlocksMinted)
+				if err := _VolcanoERC20Token.contract.UnpackLog(event, "BlocksMinted", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1368,21 +1587,21 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchBlockMinted(opts *bi
 	}), nil
 }
 
-// ParseBlockMinted is a log parse operation binding the contract event 0x0e9a1ec107d573764d20047a2ac52b16c549f7366e25e13cc1c8437d3fe98b5d.
+// ParseBlocksMinted is a log parse operation binding the contract event 0x50bb62406ff32b2601952fa6d2b8bf6f088dfb08752b3657f13f2f9a9acb27ca.
 //
-// Solidity: event BlockMinted(address receiver)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) ParseBlockMinted(log types.Log) (*VolcanoERC720TokenBlockMinted, error) {
-	event := new(VolcanoERC720TokenBlockMinted)
-	if err := _VolcanoERC720Token.contract.UnpackLog(event, "BlockMinted", log); err != nil {
+// Solidity: event BlocksMinted(address receiver, uint256 count)
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) ParseBlocksMinted(log types.Log) (*VolcanoERC20TokenBlocksMinted, error) {
+	event := new(VolcanoERC20TokenBlocksMinted)
+	if err := _VolcanoERC20Token.contract.UnpackLog(event, "BlocksMinted", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// VolcanoERC720TokenEIP712DomainChangedIterator is returned from FilterEIP712DomainChanged and is used to iterate over the raw logs and unpacked data for EIP712DomainChanged events raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenEIP712DomainChangedIterator struct {
-	Event *VolcanoERC720TokenEIP712DomainChanged // Event containing the contract specifics and raw log
+// VolcanoERC20TokenEIP712DomainChangedIterator is returned from FilterEIP712DomainChanged and is used to iterate over the raw logs and unpacked data for EIP712DomainChanged events raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenEIP712DomainChangedIterator struct {
+	Event *VolcanoERC20TokenEIP712DomainChanged // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1396,7 +1615,7 @@ type VolcanoERC720TokenEIP712DomainChangedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *VolcanoERC720TokenEIP712DomainChangedIterator) Next() bool {
+func (it *VolcanoERC20TokenEIP712DomainChangedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1405,7 +1624,7 @@ func (it *VolcanoERC720TokenEIP712DomainChangedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(VolcanoERC720TokenEIP712DomainChanged)
+			it.Event = new(VolcanoERC20TokenEIP712DomainChanged)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1420,7 +1639,7 @@ func (it *VolcanoERC720TokenEIP712DomainChangedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(VolcanoERC720TokenEIP712DomainChanged)
+		it.Event = new(VolcanoERC20TokenEIP712DomainChanged)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1436,40 +1655,40 @@ func (it *VolcanoERC720TokenEIP712DomainChangedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *VolcanoERC720TokenEIP712DomainChangedIterator) Error() error {
+func (it *VolcanoERC20TokenEIP712DomainChangedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *VolcanoERC720TokenEIP712DomainChangedIterator) Close() error {
+func (it *VolcanoERC20TokenEIP712DomainChangedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// VolcanoERC720TokenEIP712DomainChanged represents a EIP712DomainChanged event raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenEIP712DomainChanged struct {
+// VolcanoERC20TokenEIP712DomainChanged represents a EIP712DomainChanged event raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenEIP712DomainChanged struct {
 	Raw types.Log // Blockchain specific contextual infos
 }
 
 // FilterEIP712DomainChanged is a free log retrieval operation binding the contract event 0x0a6387c9ea3628b88a633bb4f3b151770f70085117a15f9bf3787cda53f13d31.
 //
 // Solidity: event EIP712DomainChanged()
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) FilterEIP712DomainChanged(opts *bind.FilterOpts) (*VolcanoERC720TokenEIP712DomainChangedIterator, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) FilterEIP712DomainChanged(opts *bind.FilterOpts) (*VolcanoERC20TokenEIP712DomainChangedIterator, error) {
 
-	logs, sub, err := _VolcanoERC720Token.contract.FilterLogs(opts, "EIP712DomainChanged")
+	logs, sub, err := _VolcanoERC20Token.contract.FilterLogs(opts, "EIP712DomainChanged")
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720TokenEIP712DomainChangedIterator{contract: _VolcanoERC720Token.contract, event: "EIP712DomainChanged", logs: logs, sub: sub}, nil
+	return &VolcanoERC20TokenEIP712DomainChangedIterator{contract: _VolcanoERC20Token.contract, event: "EIP712DomainChanged", logs: logs, sub: sub}, nil
 }
 
 // WatchEIP712DomainChanged is a free log subscription operation binding the contract event 0x0a6387c9ea3628b88a633bb4f3b151770f70085117a15f9bf3787cda53f13d31.
 //
 // Solidity: event EIP712DomainChanged()
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchEIP712DomainChanged(opts *bind.WatchOpts, sink chan<- *VolcanoERC720TokenEIP712DomainChanged) (event.Subscription, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) WatchEIP712DomainChanged(opts *bind.WatchOpts, sink chan<- *VolcanoERC20TokenEIP712DomainChanged) (event.Subscription, error) {
 
-	logs, sub, err := _VolcanoERC720Token.contract.WatchLogs(opts, "EIP712DomainChanged")
+	logs, sub, err := _VolcanoERC20Token.contract.WatchLogs(opts, "EIP712DomainChanged")
 	if err != nil {
 		return nil, err
 	}
@@ -1479,8 +1698,8 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchEIP712DomainChanged(
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(VolcanoERC720TokenEIP712DomainChanged)
-				if err := _VolcanoERC720Token.contract.UnpackLog(event, "EIP712DomainChanged", log); err != nil {
+				event := new(VolcanoERC20TokenEIP712DomainChanged)
+				if err := _VolcanoERC20Token.contract.UnpackLog(event, "EIP712DomainChanged", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1504,18 +1723,18 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchEIP712DomainChanged(
 // ParseEIP712DomainChanged is a log parse operation binding the contract event 0x0a6387c9ea3628b88a633bb4f3b151770f70085117a15f9bf3787cda53f13d31.
 //
 // Solidity: event EIP712DomainChanged()
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) ParseEIP712DomainChanged(log types.Log) (*VolcanoERC720TokenEIP712DomainChanged, error) {
-	event := new(VolcanoERC720TokenEIP712DomainChanged)
-	if err := _VolcanoERC720Token.contract.UnpackLog(event, "EIP712DomainChanged", log); err != nil {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) ParseEIP712DomainChanged(log types.Log) (*VolcanoERC20TokenEIP712DomainChanged, error) {
+	event := new(VolcanoERC20TokenEIP712DomainChanged)
+	if err := _VolcanoERC20Token.contract.UnpackLog(event, "EIP712DomainChanged", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// VolcanoERC720TokenOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenOwnershipTransferredIterator struct {
-	Event *VolcanoERC720TokenOwnershipTransferred // Event containing the contract specifics and raw log
+// VolcanoERC20TokenOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenOwnershipTransferredIterator struct {
+	Event *VolcanoERC20TokenOwnershipTransferred // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1529,7 +1748,7 @@ type VolcanoERC720TokenOwnershipTransferredIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *VolcanoERC720TokenOwnershipTransferredIterator) Next() bool {
+func (it *VolcanoERC20TokenOwnershipTransferredIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1538,7 +1757,7 @@ func (it *VolcanoERC720TokenOwnershipTransferredIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(VolcanoERC720TokenOwnershipTransferred)
+			it.Event = new(VolcanoERC20TokenOwnershipTransferred)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1553,7 +1772,7 @@ func (it *VolcanoERC720TokenOwnershipTransferredIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(VolcanoERC720TokenOwnershipTransferred)
+		it.Event = new(VolcanoERC20TokenOwnershipTransferred)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1569,19 +1788,19 @@ func (it *VolcanoERC720TokenOwnershipTransferredIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *VolcanoERC720TokenOwnershipTransferredIterator) Error() error {
+func (it *VolcanoERC20TokenOwnershipTransferredIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *VolcanoERC720TokenOwnershipTransferredIterator) Close() error {
+func (it *VolcanoERC20TokenOwnershipTransferredIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// VolcanoERC720TokenOwnershipTransferred represents a OwnershipTransferred event raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenOwnershipTransferred struct {
+// VolcanoERC20TokenOwnershipTransferred represents a OwnershipTransferred event raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenOwnershipTransferred struct {
 	PreviousOwner common.Address
 	NewOwner      common.Address
 	Raw           types.Log // Blockchain specific contextual infos
@@ -1590,7 +1809,7 @@ type VolcanoERC720TokenOwnershipTransferred struct {
 // FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
 // Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*VolcanoERC720TokenOwnershipTransferredIterator, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*VolcanoERC20TokenOwnershipTransferredIterator, error) {
 
 	var previousOwnerRule []interface{}
 	for _, previousOwnerItem := range previousOwner {
@@ -1601,17 +1820,17 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) FilterOwnershipTransferre
 		newOwnerRule = append(newOwnerRule, newOwnerItem)
 	}
 
-	logs, sub, err := _VolcanoERC720Token.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	logs, sub, err := _VolcanoERC20Token.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720TokenOwnershipTransferredIterator{contract: _VolcanoERC720Token.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
+	return &VolcanoERC20TokenOwnershipTransferredIterator{contract: _VolcanoERC20Token.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
 }
 
 // WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
 // Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *VolcanoERC720TokenOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *VolcanoERC20TokenOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
 
 	var previousOwnerRule []interface{}
 	for _, previousOwnerItem := range previousOwner {
@@ -1622,7 +1841,7 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchOwnershipTransferred
 		newOwnerRule = append(newOwnerRule, newOwnerItem)
 	}
 
-	logs, sub, err := _VolcanoERC720Token.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	logs, sub, err := _VolcanoERC20Token.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1632,8 +1851,8 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchOwnershipTransferred
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(VolcanoERC720TokenOwnershipTransferred)
-				if err := _VolcanoERC720Token.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+				event := new(VolcanoERC20TokenOwnershipTransferred)
+				if err := _VolcanoERC20Token.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1657,18 +1876,18 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchOwnershipTransferred
 // ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
 // Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) ParseOwnershipTransferred(log types.Log) (*VolcanoERC720TokenOwnershipTransferred, error) {
-	event := new(VolcanoERC720TokenOwnershipTransferred)
-	if err := _VolcanoERC720Token.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) ParseOwnershipTransferred(log types.Log) (*VolcanoERC20TokenOwnershipTransferred, error) {
+	event := new(VolcanoERC20TokenOwnershipTransferred)
+	if err := _VolcanoERC20Token.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// VolcanoERC720TokenTransferIterator is returned from FilterTransfer and is used to iterate over the raw logs and unpacked data for Transfer events raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenTransferIterator struct {
-	Event *VolcanoERC720TokenTransfer // Event containing the contract specifics and raw log
+// VolcanoERC20TokenTransferIterator is returned from FilterTransfer and is used to iterate over the raw logs and unpacked data for Transfer events raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenTransferIterator struct {
+	Event *VolcanoERC20TokenTransfer // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1682,7 +1901,7 @@ type VolcanoERC720TokenTransferIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *VolcanoERC720TokenTransferIterator) Next() bool {
+func (it *VolcanoERC20TokenTransferIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1691,7 +1910,7 @@ func (it *VolcanoERC720TokenTransferIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(VolcanoERC720TokenTransfer)
+			it.Event = new(VolcanoERC20TokenTransfer)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1706,7 +1925,7 @@ func (it *VolcanoERC720TokenTransferIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(VolcanoERC720TokenTransfer)
+		it.Event = new(VolcanoERC20TokenTransfer)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1722,19 +1941,19 @@ func (it *VolcanoERC720TokenTransferIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *VolcanoERC720TokenTransferIterator) Error() error {
+func (it *VolcanoERC20TokenTransferIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *VolcanoERC720TokenTransferIterator) Close() error {
+func (it *VolcanoERC20TokenTransferIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// VolcanoERC720TokenTransfer represents a Transfer event raised by the VolcanoERC720Token contract.
-type VolcanoERC720TokenTransfer struct {
+// VolcanoERC20TokenTransfer represents a Transfer event raised by the VolcanoERC20Token contract.
+type VolcanoERC20TokenTransfer struct {
 	From  common.Address
 	To    common.Address
 	Value *big.Int
@@ -1744,7 +1963,7 @@ type VolcanoERC720TokenTransfer struct {
 // FilterTransfer is a free log retrieval operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 value)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) FilterTransfer(opts *bind.FilterOpts, from []common.Address, to []common.Address) (*VolcanoERC720TokenTransferIterator, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) FilterTransfer(opts *bind.FilterOpts, from []common.Address, to []common.Address) (*VolcanoERC20TokenTransferIterator, error) {
 
 	var fromRule []interface{}
 	for _, fromItem := range from {
@@ -1755,17 +1974,17 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) FilterTransfer(opts *bind
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _VolcanoERC720Token.contract.FilterLogs(opts, "Transfer", fromRule, toRule)
+	logs, sub, err := _VolcanoERC20Token.contract.FilterLogs(opts, "Transfer", fromRule, toRule)
 	if err != nil {
 		return nil, err
 	}
-	return &VolcanoERC720TokenTransferIterator{contract: _VolcanoERC720Token.contract, event: "Transfer", logs: logs, sub: sub}, nil
+	return &VolcanoERC20TokenTransferIterator{contract: _VolcanoERC20Token.contract, event: "Transfer", logs: logs, sub: sub}, nil
 }
 
 // WatchTransfer is a free log subscription operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 value)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *VolcanoERC720TokenTransfer, from []common.Address, to []common.Address) (event.Subscription, error) {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *VolcanoERC20TokenTransfer, from []common.Address, to []common.Address) (event.Subscription, error) {
 
 	var fromRule []interface{}
 	for _, fromItem := range from {
@@ -1776,7 +1995,7 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchTransfer(opts *bind.
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _VolcanoERC720Token.contract.WatchLogs(opts, "Transfer", fromRule, toRule)
+	logs, sub, err := _VolcanoERC20Token.contract.WatchLogs(opts, "Transfer", fromRule, toRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1786,8 +2005,8 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchTransfer(opts *bind.
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(VolcanoERC720TokenTransfer)
-				if err := _VolcanoERC720Token.contract.UnpackLog(event, "Transfer", log); err != nil {
+				event := new(VolcanoERC20TokenTransfer)
+				if err := _VolcanoERC20Token.contract.UnpackLog(event, "Transfer", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1811,9 +2030,9 @@ func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) WatchTransfer(opts *bind.
 // ParseTransfer is a log parse operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
 // Solidity: event Transfer(address indexed from, address indexed to, uint256 value)
-func (_VolcanoERC720Token *VolcanoERC720TokenFilterer) ParseTransfer(log types.Log) (*VolcanoERC720TokenTransfer, error) {
-	event := new(VolcanoERC720TokenTransfer)
-	if err := _VolcanoERC720Token.contract.UnpackLog(event, "Transfer", log); err != nil {
+func (_VolcanoERC20Token *VolcanoERC20TokenFilterer) ParseTransfer(log types.Log) (*VolcanoERC20TokenTransfer, error) {
+	event := new(VolcanoERC20TokenTransfer)
+	if err := _VolcanoERC20Token.contract.UnpackLog(event, "Transfer", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

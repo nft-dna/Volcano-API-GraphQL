@@ -37,11 +37,14 @@ test: internal/graphql/schema/gen/schema.graphql
 internal/graphql/schema/gen/schema.graphql:
 	@bash tools/make_graphql_bundle.sh $@ internal/graphql/definition
 
-internal/repository/rpc/contracts/VolcanoERC720Token.go: internal/repository/rpc/contracts/abi/VolcanoERC720Token.json
-	abigen --type VolcanoERC720Token --pkg contracts --abi $< --out $@
+internal/repository/rpc/contracts/VolcanoERC20Staking.go: internal/repository/rpc/contracts/abi/VolcanoERC20Staking.json
+	abigen --type VolcanoERC20Staking --pkg contracts --abi $< --out $@
 
-internal/repository/rpc/contracts/VolcanoERC720Factory.go: internal/repository/rpc/contracts/abi/VolcanoERC720Factory.json
-	abigen --type VolcanoERC720Factory --pkg contracts --abi $< --out $@	
+internal/repository/rpc/contracts/VolcanoERC20Token.go: internal/repository/rpc/contracts/abi/VolcanoERC20Token.json
+	abigen --type VolcanoERC20Token --pkg contracts --abi $< --out $@
+
+internal/repository/rpc/contracts/VolcanoERC20Factory.go: internal/repository/rpc/contracts/abi/VolcanoERC20Factory.json
+	abigen --type VolcanoERC20Factory --pkg contracts --abi $< --out $@	
 
 internal/repository/rpc/contracts/VolcanoERC721.go: internal/repository/rpc/contracts/abi/VolcanoERC721.json
 	abigen --type VolcanoERC721 --pkg contracts --abi $< --out $@

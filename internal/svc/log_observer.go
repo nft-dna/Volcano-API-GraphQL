@@ -57,8 +57,8 @@ func newLogObserver(mgr *Manager) *logObserver {
 			/* erc20::event TokenCreated(address,address)*/
 			common.HexToHash("0xd5f9bdf12adf29dab0248c349842c3822d53ae2bb4f36352f301630d018c8139"): newTokenContract,
 
-			/* erc20::event BlockMinted(address)*/
-			common.HexToHash("0x0e9a1ec107d573764d20047a2ac52b16c549f7366e25e13cc1c8437d3fe98b5d"): memeTokenBlockMinted,
+			/* erc20::event BlocksMinted(address,uint256)*/
+			common.HexToHash("0x50bb62406ff32b2601952fa6d2b8bf6f088dfb08752b3657f13f2f9a9acb27ca"): memeTokenBlocksMinted,
 
 			/* Factory::event ContractCreated(address creator, address nft) */
 			//common.HexToHash("0x2d49c67975aadd2d389580b368cfff5b49965b0bd5da33c144922ce01e7a4d7b"): newNFTContract,
