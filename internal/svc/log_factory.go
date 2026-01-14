@@ -118,6 +118,7 @@ func extenMemeTokenMintDetails(nft *types.Collection) (err error) {
 
 	nft.MemeDetails = types.MemeTokenDetails{
 		InitialReserves: big.Int{},
+		StakingAmount:   big.Int{},
 		BlocksAmount:    big.Int{},
 		BlocksFee:       big.Int{},
 		BlocksMaxSupply: 0,
@@ -129,6 +130,13 @@ func extenMemeTokenMintDetails(nft *types.Collection) (err error) {
 	} else {
 		nft.MemeDetails.InitialReserves = *biVal
 	}
+	
+	biVal, err := repo.CollectionErc20StakingAmount(&nft.Address)
+	if err != nil {
+		log.Errorf("%s %s stakingAmount not known; %s", nft.Type, nft.Address.String(), err.Error())
+	} else {
+		nft.MemeDetails.StakingAmount = *biVal
+	}	
 
 	bVal, err := repo.CollectionErc20BlocksAmount(&nft.Address)
 	if err != nil {

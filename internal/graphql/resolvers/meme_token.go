@@ -214,6 +214,13 @@ func (t *MemeToken) InitialReserve() hexutil.Big {
 	//return *(*hexutil.Big)(&t.MemeDetails.InitialReserves)
 }
 
+func (t *MemeToken) StakingPoolSize() hexutil.Big {
+	n := new(big.Int)
+	n, _ = n.SetString(t.MemeDetails.StakingAmount, 16)
+	return *(*hexutil.Big)(n)
+	//return *(*hexutil.Big)(&t.MemeDetails.StakingAmount)
+}
+
 func (t *MemeToken) BlocksAmount() hexutil.Big {
 	n := new(big.Int)
 	n, _ = n.SetString(t.MemeDetails.BlocksAmount, 16)

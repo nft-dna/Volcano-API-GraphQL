@@ -183,6 +183,10 @@ func (p *Proxy) CollectionErc20InitialReserves(adr *common.Address) (*big.Int, e
 	return p.rpc.Erc20InitialReserves(adr, nil)
 }
 
+func (p *Proxy) CollectionErc20StakingAmount(adr *common.Address) (*big.Int, error) {
+	return p.rpc.Erc20StakingAmount(adr, nil)
+}
+
 func (p *Proxy) CollectionErc20BlocksAmount(adr *common.Address) (*big.Int, error) {
 	return p.rpc.Erc20MintBlocksAmount(adr, nil)
 }

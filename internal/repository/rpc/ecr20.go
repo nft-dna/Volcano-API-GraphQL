@@ -140,6 +140,26 @@ func (o *Opera) Erc20InitialReserves(contract *common.Address, block *big.Int) (
 	return new(big.Int).SetBytes(data), nil
 }
 
+func (o *Opera) Erc20StakingAmount(contract *common.Address, block *big.Int) (*big.Int, error) {
+	// prepare params
+	input, err := o.Erc20Abi().Pack("stakingAmount")
+	if err != nil {
+		log.Errorf("can not pack data; %s", err.Error())
+		return nil, err
+	}
+
+	// call the contract
+	data, err := o.ftm.CallContract(context.Background(), ethereum.CallMsg{
+		From: common.Address{},
+		To:   contract,
+		Data: input,
+	}, block)
+	if err != nil {
+		return nil, err
+	}
+	return new(big.Int).SetBytes(data), nil
+}
+
 func (o *Opera) Erc20MintBlocksAmount(contract *common.Address, block *big.Int) (*big.Int, error) {
 	// prepare params
 	input, err := o.Erc20Abi().Pack("mintBlocksAmount")

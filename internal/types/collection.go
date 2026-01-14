@@ -19,6 +19,7 @@ type CollectionMintDetails struct {
 
 type MemeTokenDetails struct {
 	InitialReserves big.Int `bson:"initialReserves"`
+	StakingAmount   big.Int `bson:"stakingAmount"`
 	BlocksAmount    big.Int  `bson:"blocksAmount"`
 	BlocksFee       big.Int `bson:"blocksFee"`
 	BlocksMaxSupply uint64  `bson:"blocksMaxSupply"`

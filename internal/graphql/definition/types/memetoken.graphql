@@ -68,6 +68,9 @@ type MemeToken {
 
     # Token initial reserve minted to initial address receiver
     initialReserve: BigInt! 
+	
+	# Token initial reserve minted to staking pool
+	stakingPoolSize: BigInt! 
 
     # Tokens distributed to the minter at minting time (and the same amount will be sent as LP on the dex pool)
     blocksAmount: BigInt!   

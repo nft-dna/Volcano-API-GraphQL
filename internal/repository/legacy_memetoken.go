@@ -66,6 +66,7 @@ func (p *Proxy) UploadMemeTokenApplication(app types.CollectionApplication, imag
 	}
 	memeDetails := types.MemeTokenDetails{
 		InitialReserves: "", //big.Int{},
+		StakingAmount:   "", //big.Int{},
 		BlocksAmount:    "", //big.Int{},
 		BlocksFee:       "", //big.Int{},
 		BlocksMaxSupply: 0,
@@ -105,6 +106,14 @@ func (p *Proxy) extendMemeTokenDetails(adr *common.Address, memeDetails *types.M
 		isInternal = false
 	} else {
 		memeDetails.InitialReserves = biVal.Text(16) //hexutil.Big(*biVal)
+	}
+
+	biVal, err = p.CollectionErc20StakingAmount(adr)
+	if err != nil {
+		log.Errorf("%s stakingAmount not known; %s", adr.String(), err.Error())
+		isInternal = false
+	} else {
+		memeDetails.StakingAmount = biVal.Text(16) //hexutil.Big(*biVal)
 	}
 
 	biVal, err = p.CollectionErc20BlocksAmount(adr)

@@ -45,6 +45,7 @@ const (
 
 	// isInternal Meme Token (created by marketplace users)
 	//fiLegacyMemeTokenInitialReserves = "initialReserves"
+	//fiLegacyMemeTokenStakingAmount   = "stakingAmount"
 	//fiLegacyMemeTokenBlocksAmount    = "blocksAmount"
 	//fiLegacyMemeTokenBlocksFee       = "blocksFee"
 	//fiLegacyMemeTokenBlocksMaxSupply = "blocksMaxSupply"
@@ -111,6 +112,7 @@ func (sdb *SharedMongoDbBridge) InsertLegacyMemeToken(c types.LegacyCollection) 
 			{Key: fiLegacyMemeTokenAppropriateUpdate, Value: time.Now()},
 			// isInternal Meme Token (created by marketplace users)
 			//{Key: fiLegacyMemeTokenInitialReserves, Value: c.MemeDetails.InitialReserves},
+			//{Key: fiLegacyMemeTokenStakingAmount, Value: c.MemeDetails.StakingAmount},
 			//{Key: fiLegacyMemeTokenBlocksAmount, Value: c.MemeDetails.BlocksAmount},
 			//{Key: fiLegacyMemeTokenBlocksFee, Value: c.MemeDetails.BlocksFee},
 			//{Key: fiLegacyMemeTokenBlocksMaxSupply, Value: c.MemeDetails.BlocksMaxSupply},
