@@ -5,6 +5,7 @@ import (
 	"artion-api-graphql/internal/types"
 	"artion-api-graphql/internal/types/sorting"
 	"bytes"
+	"errors"
 	"math/big"
 	"strings"
 	"time"
@@ -267,6 +268,11 @@ func (t *Collection) CanMint(args struct {
 	if !t.IsInternal {
 		return false, nil
 	}
+
+	if args.User == (common.Address{}) {
+		return false, errors.New("User is empty (is wallet connected?)")
+	}
+
 	if t.IsOwnerOnly && !bytes.EqualFold(t.Owner.Bytes(), args.User.Bytes()) {
 		return false, nil
 	}

@@ -4,6 +4,7 @@ import (
 	"artion-api-graphql/internal/repository"
 	"artion-api-graphql/internal/types"
 	"artion-api-graphql/internal/types/sorting"
+	"errors"
 	"math/big"
 	"strings"
 
@@ -250,6 +251,10 @@ func (t *MemeToken) CanMint(args struct {
 	//if (t.IsOwnerOnly || !bytes.EqualFold(t.Owner.Bytes(), args.User.Bytes())) {
 	//	return false, nil
 	//}
+	if args.User == (common.Address{}) {
+		return false, errors.New("User is empty (is wallet connected?)")
+	}
+
 	sup, err := repository.R().MemeSupply(&t.Address)
 	if err != nil {
 		return false, err
