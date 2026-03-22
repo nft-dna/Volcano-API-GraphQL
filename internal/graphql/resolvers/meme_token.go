@@ -208,6 +208,9 @@ func (t *MemeToken) FeeRecipientUser() (*User, error) {
 }
 
 func (t *MemeToken) InitialReserve() hexutil.Big {
+	if t.MemeDetails.InitialReserves == "" {
+		return *(*hexutil.Big)(big.NewInt(0))
+	}
 	n := new(big.Int)
 	n, _ = n.SetString(t.MemeDetails.InitialReserves, 16)
 	return *(*hexutil.Big)(n)
@@ -215,6 +218,9 @@ func (t *MemeToken) InitialReserve() hexutil.Big {
 }
 
 func (t *MemeToken) StakingPoolSize() hexutil.Big {
+	if t.MemeDetails.StakingAmount == "" {
+		return *(*hexutil.Big)(big.NewInt(0))
+	}
 	n := new(big.Int)
 	n, _ = n.SetString(t.MemeDetails.StakingAmount, 16)
 	return *(*hexutil.Big)(n)
@@ -222,6 +228,9 @@ func (t *MemeToken) StakingPoolSize() hexutil.Big {
 }
 
 func (t *MemeToken) BlocksAmount() hexutil.Big {
+	if t.MemeDetails.BlocksAmount == "" {
+		return *(*hexutil.Big)(big.NewInt(0))
+	}
 	n := new(big.Int)
 	n, _ = n.SetString(t.MemeDetails.BlocksAmount, 16)
 	return *(*hexutil.Big)(n)
@@ -229,6 +238,9 @@ func (t *MemeToken) BlocksAmount() hexutil.Big {
 }
 
 func (t *MemeToken) BlocksFee() hexutil.Big {
+	if t.MemeDetails.BlocksAmount == "" {
+		return *(*hexutil.Big)(big.NewInt(0))
+	}
 	n := new(big.Int)
 	n, _ = n.SetString(t.MemeDetails.BlocksFee, 16)
 	return *(*hexutil.Big)(n)
@@ -256,13 +268,19 @@ func (t *MemeToken) CanMint(args struct {
 	//	return false, nil
 	//}
 
-	sup, err := repository.R().MemeSupply(&t.Address)
-	if err != nil {
-		return false, err
+	/*
+		sup, err := repository.R().MemeBlocksSupply(&t.Address)
+		if err != nil {
+			return false, nil // err
+		}
+
+		if sup.Cmp(big.NewInt(int64(t.MemeDetails.BlocksMaxSupply))) >= 0 {
+			return false, nil // err
+		}
+	*/
+	if int64(t.TotalSupply) >= int64(t.MintDetails.MaxItems) {
+		return false, nil
 	}
 
-	if sup.Cmp(big.NewInt(int64(t.MemeDetails.BlocksMaxSupply))) >= 0 {
-		return false, err
-	}
 	return repository.R().CanMintBlock(&t.Address, &args.User, (*big.Int)(args.Fee))
 }

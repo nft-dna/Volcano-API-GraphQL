@@ -90,6 +90,10 @@ func (p *Proxy) CanMintErc1155(contract *common.Address, user *common.Address, f
 	return p.rpc.CanMintErc1155(contract, user, fee)
 }
 
+func (p *Proxy) IncCollectionSupply(contract *common.Address, count uint64) bool {
+	return p.shared.IncCollectionSupply(*contract, count)
+}
+
 // CollectionOwner tries to get the owner of the given collection.
 func (p *Proxy) CollectionOwner(contract *common.Address) *common.Address {
 	return p.rpc.CollectionOwner(contract)

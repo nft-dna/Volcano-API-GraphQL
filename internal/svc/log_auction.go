@@ -16,7 +16,7 @@ import (
 // Auction::AuctionCreated(address indexed nftAddress, uint256 indexed tokenId, address payToken)
 func auctionCreated(evt *eth.Log, _ *logObserver) {
 	if !repo.IsObservedContract(&evt.Address) {
-		log.Debugf("event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		log.Debugf("auctionCreated event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
 		return
 	}
 
@@ -201,6 +201,10 @@ func auctionEndTimeUpdated(evt *eth.Log, lo *logObserver) {
 
 // auctionTimeBoundaryUpdated processes given time boundary change event log.
 func auctionTimeBoundaryUpdated(evt *eth.Log, _ *logObserver, update func(*types.Auction, types.Time)) {
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("auctionTimeBoundaryUpdated event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
 	// sanity check: 1 + 2 topics; 1 x uint256 = 32 bytes
 	if len(evt.Data) != 32 || len(evt.Topics) != 3 {
 		log.Errorf("not Auction::UpdateAuction-X-Time() event #%d/#%d; expected 32 bytes of data, %d given; expected 3 topics, %d given",
@@ -269,6 +273,12 @@ func auctionTimeBoundaryUpdated(evt *eth.Log, _ *logObserver, update func(*types
 // auctionReserveUpdated processes auction reserve price updated.
 // Auction::UpdateAuctionReservePrice(address indexed nftAddress, uint256 indexed tokenId, address payToken, uint256 reservePrice)
 func auctionReserveUpdated(evt *eth.Log, _ *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("auctionReserveUpdated event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 2 topics; 1 x uint256 + 1 x address = 64 bytes
 	if len(evt.Data) != 64 || len(evt.Topics) != 3 {
 		log.Errorf("not Auction::UpdateAuctionReservePrice() event #%d/#%d; expected 64 bytes of data, %d given; expected 3 topics, %d given",
@@ -347,6 +357,12 @@ func auctionReserveUpdated(evt *eth.Log, _ *logObserver) {
 // auctionCanceled processes auction being canceled event log.
 // Auction::AuctionCancelled(address indexed nftAddress, uint256 indexed tokenId)
 func auctionCanceled(evt *eth.Log, _ *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("auctionCanceled event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 2 topics; 0 bytes data
 	if len(evt.Data) != 0 || len(evt.Topics) != 3 {
 		log.Errorf("not Auction::AuctionCancelled() event #%d/#%d; expected no data, %d bytes given; expected 3 topics, %d given",
@@ -418,6 +434,12 @@ func auctionCanceled(evt *eth.Log, _ *logObserver) {
 // auctionResolved processes the auction resolved event log.
 // Auction::AuctionResulted(address indexed nftAddress, uint256 indexed tokenId, address indexed winner, address payToken, int256 unitPrice, uint256 winningBid)
 func auctionResolved(evt *eth.Log, lo *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("auctionResolvedevent #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 3 topics; 2 x uint256 + 1 address = 96 bytes data
 	if len(evt.Data) != 96 || len(evt.Topics) != 4 {
 		log.Errorf("not Auction::AuctionResulted() event #%d/#%d; expected 96 bytes of data, %d given; expected 4 topics, %d given",
@@ -449,6 +471,12 @@ func auctionResolved(evt *eth.Log, lo *logObserver) {
 // auctionResolved processes the auction resolved event log.
 // Auction::AuctionResulted(address oldOwner, address indexed nftAddress, uint256 indexed tokenId, address indexed winner, address payToken, int256 unitPrice, uint256 winningBid)
 func auctionResolvedV2(evt *eth.Log, lo *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("auctionResolvedV2 event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 3 topics; 2 x uint256 + 2 address = 128 bytes data
 	if len(evt.Data) != 128 || len(evt.Topics) != 4 {
 		log.Errorf("not Auction::AuctionResultedV2() event #%d/#%d; expected 128 bytes of data, %d given; expected 4 topics, %d given",

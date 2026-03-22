@@ -19,6 +19,12 @@ var zeroAddress = common.Address{}
 // erc721TokenMinted handles log event for new NFT token minted on an observed ERC721 contract.
 // ERC721::Minted(uint256 tokenId, address beneficiary, string tokenUri, address minter)
 func erc721TokenMinted(evt *eth.Log, _ *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("erc721TokenMinted event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: no extra topics; tokenId + 2 x Address + URI >= 3 x 32 bytes
 	if len(evt.Data) < 96 || len(evt.Topics) != 1 {
 		log.Errorf("not ERC721::Minted() event #%d/#%d; expected at least 96 bytes of data, %d given; expected 1 topic, %d given",
@@ -60,6 +66,10 @@ func erc721TokenMinted(evt *eth.Log, _ *logObserver) {
 	if err := repo.StoreToken(tok); err != nil {
 		log.Errorf("could not store token %s at %s; %s", tok.TokenId.String(), tok.Contract.String(), err.Error())
 		return
+	}
+
+	if !repo.IncCollectionSupply(&tok.Contract, 1) {
+		log.Errorf("ERC-721 Minted event #%d/#%d; collection %s not found in database or update failed", evt.BlockNumber, evt.Index, tok.Contract.String())
 	}
 }
 
@@ -108,6 +118,12 @@ func erc721TokenMustExist(contract *common.Address, tokenID *big.Int, blk *eth.H
 // erc721TokenTransfer handles log event for NFT token ownership transfer on an observed ERC721 contract.
 // ERC721::Transfer(address indexed from, address indexed to, uint256 indexed tokenId)
 func erc721TokenTransfer(evt *eth.Log, lo *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("erc721TokenTransfer event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 3 extra topics for indexed parties; no additional data = 0 bytes
 	if len(evt.Data) != 0 || len(evt.Topics) != 4 {
 		log.Debugf("not ERC721::Transfer() event #%d/#%d; expected no data, %d given; expected 4 topics, %d given",

@@ -4,12 +4,13 @@ package svc
 import (
 	"artion-api-graphql/internal/types"
 	"bytes"
+	"math/big"
+	"time"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	eth "github.com/ethereum/go-ethereum/core/types"
 	"go.mongodb.org/mongo-driver/mongo"
-	"math/big"
-	"time"
 )
 
 const (
@@ -30,7 +31,7 @@ var (
 // Marketplace::ItemListed(address indexed owner, address indexed nft, uint256 tokenId, uint256 quantity, address payToken, uint256 pricePerItem, uint256 startingTime)
 func marketNFTListed(evt *eth.Log, _ *logObserver) {
 	if !repo.IsObservedContract(&evt.Address) {
-		log.Debugf("event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		log.Debugf("marketNFTListed event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
 		return
 	}
 
@@ -191,9 +192,15 @@ func marketNFTUpdated(evt *eth.Log, _ *logObserver) {
 // marketNFTUnlisted processes canceled NFT listing event.
 // Marketplace::ItemCanceled(address indexed owner, address indexed nft, uint256 tokenId)
 func marketNFTUnlisted(evt *eth.Log, _ *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("marketNFTUnlisted event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 2 topics; 1 x uint256 = 32 bytes
 	if len(evt.Data) != 32 || len(evt.Topics) != 3 {
-		log.Errorf("not Marketplace::ItemCanceled() event #%d/#%d; expected 32 bytes of data, %d given; expected 3 topics, %d given",
+		log.Errorf("not Marketplace::marketNFTUnlisted event #%d/#%d; expected 32 bytes of data, %d given; expected 3 topics, %d given",
 			evt.BlockNumber, evt.Index, len(evt.Data), len(evt.Topics))
 		return
 	}
@@ -280,6 +287,11 @@ func itemSoldHow(tx common.Hash) int {
 // marketItemSold processes NFT listing being finished with sale event; an offer is resulted by the same event.
 // Marketplace::ItemSold(address indexed seller, address indexed buyer, address indexed nft, uint256 tokenId, uint256 quantity, address payToken, int256 unitPrice, uint256 pricePerItem)
 func marketItemSold(evt *eth.Log, lo *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("marketItemSold event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
 	// sanity check: 1 + 3 topics; 4 x uint256 + 1 x address = 5 x 32 bytes = 160 bytes
 	if len(evt.Data) != 160 || len(evt.Topics) != 4 {
 		log.Errorf("not Marketplace::ItemCanceled() event #%d/#%d; expected 160 bytes of data, %d given; expected 4 topics, %d given",

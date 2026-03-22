@@ -71,6 +71,7 @@ func (p *Proxy) UploadMemeTokenApplication(app types.CollectionApplication, imag
 		BlocksFee:       "", //big.Int{},
 		BlocksMaxSupply: 0,
 	}
+	totalSupply := uint64(0)
 
 	// check if it is created by 'our factory' contract
 	// TODO.. implement an 'interface' or check for contract creator address...
@@ -80,12 +81,17 @@ func (p *Proxy) UploadMemeTokenApplication(app types.CollectionApplication, imag
 		return err
 	}
 
+	biVal, err := p.MemeBlocksSupply(&app.Contract)
+	if err != nil {
+		totalSupply = biVal.Uint64()
+	}
+
 	if !isInternal {
 		return fmt.Errorf("'Not-Factory' Meme Tokens actually are not supported here")
 	}
 
-	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, false, mintDetails, memeDetails)
-	return p.shared.InsertLegacyMemeToken(collection)
+	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, false, mintDetails, memeDetails, totalSupply)
+	return p.shared.InsertLegacyMemeToken(collection, true)
 }
 
 func (p *Proxy) extendMemeTokenDetails(adr *common.Address, memeDetails *types.MemeTokenDetails) bool {

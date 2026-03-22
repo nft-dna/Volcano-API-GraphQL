@@ -3,18 +3,20 @@ package svc
 
 import (
 	"artion-api-graphql/internal/types"
+	"math/big"
+	"time"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	eth "github.com/ethereum/go-ethereum/core/types"
-	"math/big"
-	"time"
 )
 
 // marketNFTListed handles log event for NFT token to receive buy offer on the Marketplace.
 // Marketplace::OfferCreated(address indexed creator, address indexed nft, uint256 tokenId, uint256 quantity, address payToken, uint256 pricePerItem, uint256 deadline)
 func marketOfferCreated(evt *eth.Log, _ *logObserver) {
+
 	if !repo.IsObservedContract(&evt.Address) {
-		log.Debugf("event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		log.Debugf("marketOfferCreated event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
 		return
 	}
 
@@ -110,6 +112,12 @@ func marketOfferCreated(evt *eth.Log, _ *logObserver) {
 // marketOfferCanceled handles log event for NFT token to lose buy offer on the Marketplace.
 // Marketplace::OfferCanceled(address indexed creator, address indexed nft, uint256 tokenId)
 func marketOfferCanceled(evt *eth.Log, _ *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("marketOfferCanceled event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 2 topics; 1 x uint256 = 32 bytes
 	if len(evt.Data) != 32 || len(evt.Topics) != 3 {
 		log.Errorf("not Marketplace::OfferCanceled() event #%d/#%d; expected 32 bytes of data, %d given; expected 3 topics, %d given",

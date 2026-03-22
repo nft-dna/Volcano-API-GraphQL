@@ -76,12 +76,17 @@ func (p *Proxy) UploadCollectionApplication(app types.CollectionApplication, ima
 	// check if it is created by 'our factory' contract
 	// TODO.. implement an 'interface' or check for contract creator address...
 	isInternal := true
+	totalSupply := uint64(0)
 
 	if p.IsErc1155Contract(&app.Contract) {
 		isInternal = p.extendErc1155CollectionMintDetails(&app.Contract, &mintDetails)
 		if err != nil {
 			log.Criticalf("failed to extend Erc1155 Collection MintDetails %s; %s", app.Contract.String(), err.Error())
 			return err
+		}
+		biVal, err := p.CollectionErc1155Supply(&app.Contract)
+		if err != nil {
+			totalSupply = biVal.Uint64()
 		}
 		isOwnerOnly = !mintDetails.PublicMint
 		mintDetails.IsErc1155 = true
@@ -91,9 +96,13 @@ func (p *Proxy) UploadCollectionApplication(app types.CollectionApplication, ima
 			log.Criticalf("failed to extend Erc721 Collection MintDetails %s; %s", app.Contract.String(), err.Error())
 			return err
 		}
+		biVal, err := p.CollectionErc721Supply(&app.Contract)
+		if err != nil {
+			totalSupply = biVal.Uint64()
+		}
 		isOwnerOnly = !mintDetails.PublicMint
 	}
-	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, !isInternal || isOwnerOnly, mintDetails, memeDetails)
+	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, !isInternal || isOwnerOnly, mintDetails, memeDetails, totalSupply)
 
 	return p.shared.InsertLegacyCollection(collection)
 }

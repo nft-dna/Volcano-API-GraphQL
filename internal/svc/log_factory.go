@@ -10,7 +10,10 @@ import (
 )
 
 func newTokenContract(evt *eth.Log, lo *logObserver) {
-	// MM todo ERC20 TokenCreated event
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("newTokenContract event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
 
 	if len(evt.Data) != 64 || len(evt.Topics) != 1 {
 		log.Errorf("not Factory::TokenCreated() event #%d/#%d; expected 64 bytes of data, %d given; expected 1 topic, %d given",
@@ -19,9 +22,12 @@ func newTokenContract(evt *eth.Log, lo *logObserver) {
 	}
 
 	// make meme token address
+	ow := common.Address{}
+	ow.SetBytes(evt.Data[0:32])
 	ca := common.Address{}
 	ca.SetBytes(evt.Data[32:64])
 	meme := types.Collection{
+		Creator:      ow,
 		Address:      ca,
 		IsActive:     true,
 		IsOurFactory: true,
@@ -93,80 +99,115 @@ func extendMemeTokenMetadata(meme *types.Collection) (err error) {
 		}
 	}
 
+	if err = extendMemeTokenMintDetails(meme); err != nil {
+		log.Criticalf("failed to extend Meme Token MintDetails %s; %s", meme.Address.String(), err.Error())
+		return err
+	}
+
+	if nil == legacyCollection {
+		legacyCollection := types.LegacyCollection{
+			Address: meme.Address,
+			Name:    meme.Name,
+			Symbol:  meme.Symbol,
+			//Description       : meme.Description,
+			//CategoriesStr     : meme.CategoriesStr,
+			//Image             : meme.Image,
+			Owner: &meme.Creator,
+			//FeeRecipient      : meme.FeeRecipient,
+			//RoyaltyValue      : meme.RoyaltyValue,
+			//Email             : meme.Email,
+			//SiteUrl           : meme.SiteUrl,
+			//DiscordUrl        : meme.DiscordUrl,
+			//TelegramUrl       : meme.TelegramUrl,
+			//MediumUrl         : meme.MediumUrl,
+			//TwitterUrl        : meme.TwitterUrl,
+			//Instagram         : meme.Instagram,
+			IsAppropriate: true,  //meme.IsAppropriate,
+			IsInternal:    true,  //meme.IsInternal,
+			IsOwnerOnly:   false, //meme.IsOwnerOnly,
+			IsVerified:    false, //meme.IsVerified,
+			IsReviewed:    false, //meme.IsReviewed,
+			//AppropriateUpdate : meme.AppropriateUpdate,
+			//MintDetails: meme.MintDetails,
+			MemeDetails: meme.MemeDetails,
+		}
+		repo.InsertLegacyMemeToken(legacyCollection, false)
+	}
+
+	return nil
+}
+
+func extendMemeTokenMintDetails(meme *types.Collection) (err error) {
+
 	/*
-		if err = extenMemeTokenMintDetails(meme); err != nil {
-			log.Criticalf("failed to extend Meme Token MintDetails %s; %s", meme.Address.String(), err.Error())
-			return err
+		meme.MintDetails = types.CollectionMintDetails{
+			PublicMint:    true,        // NB: also need to set fiLegacyCollectionIsOwnerOnly when registering
+			IsErc1155:     false,       // unused here..
+			HasBaseUri:    false,       // unused here..
+			MaxItems:      0,           // TODO: set MaxBlocks
+			MaxItemCount:  0,           // unused here..
+			MintStartTime: time.Time{}, // actually unused here..
+			MintEndTime:   time.Time{}, // actually unused here..
+			RevealTime:    time.Time{}, // unused here..
 		}
 	*/
 
-	return nil
-}
-
-/*
-func extenMemeTokenMintDetails(nft *types.Collection) (err error) {
-	nft.MintDetails = types.CollectionMintDetails{
-		PublicMint:    true,        // NB: also need to set fiLegacyCollectionIsOwnerOnly when registering
-		IsErc1155:     false,       // unused here..
-		HasBaseUri:    false,       // unused here..
-		MaxItems:      0,           // TODO: set MaxBlocks
-		MaxItemCount:  0,           // unused here..
-		MintStartTime: time.Time{}, // actually unused here..
-		MintEndTime:   time.Time{}, // actually unused here..
-		RevealTime:    time.Time{}, // unused here..
-	}
-
-	nft.MemeDetails = types.MemeTokenDetails{
-		InitialReserves: big.Int{},
-		StakingAmount:   big.Int{},
-		BlocksAmount:    big.Int{},
-		BlocksFee:       big.Int{},
+	meme.MemeDetails = types.MemeTokenDetails{
+		InitialReserves: "", //big.Int{},
+		StakingAmount:   "", //big.Int{},
+		BlocksAmount:    "", //big.Int{},
+		BlocksFee:       "", //big.Int{},
 		BlocksMaxSupply: 0,
 	}
 
-	biVal, err := repo.CollectionErc20InitialReserves(&nft.Address)
+	biVal, err := repo.CollectionErc20InitialReserves(&meme.Address)
 	if err != nil {
-		log.Errorf("%s %s initialReserves not known; %s", nft.Type, nft.Address.String(), err.Error())
+		log.Errorf("%s %s initialReserves not known; %s", meme.Type, meme.Address.String(), err.Error())
 	} else {
-		nft.MemeDetails.InitialReserves = *biVal
-	}
-	
-	biVal, err := repo.CollectionErc20StakingAmount(&nft.Address)
-	if err != nil {
-		log.Errorf("%s %s stakingAmount not known; %s", nft.Type, nft.Address.String(), err.Error())
-	} else {
-		nft.MemeDetails.StakingAmount = *biVal
-	}	
-
-	bVal, err := repo.CollectionErc20BlocksAmount(&nft.Address)
-	if err != nil {
-		log.Errorf("%s %s blocksAmount not known; %s", nft.Type, nft.Address.String(), err.Error())
-	} else {
-		nft.MemeDetails.BlocksAmount = bVal.Uint64()
+		meme.MemeDetails.InitialReserves = biVal.Text(16)
 	}
 
-	biVal, err = repo.CollectionErc20BlocksFee(&nft.Address)
+	biVal, err = repo.CollectionErc20StakingAmount(&meme.Address)
 	if err != nil {
-		log.Errorf("%s %s blocksFee not known; %s", nft.Type, nft.Address.String(), err.Error())
+		log.Errorf("%s %s stakingAmount not known; %s", meme.Type, meme.Address.String(), err.Error())
 	} else {
-		nft.MemeDetails.BlocksFee = *biVal
+		meme.MemeDetails.StakingAmount = biVal.Text(16)
 	}
 
-	bVal, err = repo.CollectionErc20BlocksMaxSupply(&nft.Address)
+	biVal, err = repo.CollectionErc20BlocksAmount(&meme.Address)
 	if err != nil {
-		log.Errorf("%s %s blocksMaxSupply not known; %s", nft.Type, nft.Address.String(), err.Error())
+		log.Errorf("%s %s blocksAmount not known; %s", meme.Type, meme.Address.String(), err.Error())
 	} else {
-		nft.MemeDetails.BlocksMaxSupply = bVal.Uint64()
+		meme.MemeDetails.BlocksAmount = biVal.Text(16)
+	}
+
+	biVal, err = repo.CollectionErc20BlocksFee(&meme.Address)
+	if err != nil {
+		log.Errorf("%s %s blocksFee not known; %s", meme.Type, meme.Address.String(), err.Error())
+	} else {
+		meme.MemeDetails.BlocksFee = biVal.Text(16)
+	}
+
+	bVal, err := repo.CollectionErc20BlocksMaxSupply(&meme.Address)
+	if err != nil {
+		log.Errorf("%s %s blocksMaxSupply not known; %s", meme.Type, meme.Address.String(), err.Error())
+	} else {
+		meme.MemeDetails.BlocksMaxSupply = bVal.Uint64()
 	}
 
 	return nil
 }
-*/
 
 // newNFTContract handles log event for new factory deployed ERC721/ERC1155 contract.
 // Factory::event ContractCreated(address creator, address nft)
 // MM Factory::event ContractCreated(address creator, address nft, bool isPrivate)
 func newNFTContract(evt *eth.Log, lo *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("newNFTContract event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: no additional topics; 2 x Address = 2 x 32 bytes
 	//if len(evt.Data) != 64 || len(evt.Topics) != 1 {
 	// sanity check: no additional topics; 3 x Address = 3 x 32 bytes
@@ -177,9 +218,12 @@ func newNFTContract(evt *eth.Log, lo *logObserver) {
 	}
 
 	// make NFT address
+	ow := common.Address{}
+	ow.SetBytes(evt.Data[0:32])
 	ca := common.Address{}
 	ca.SetBytes(evt.Data[32:64])
 	nft := types.Collection{
+		Creator:      ow,
 		Address:      ca,
 		IsActive:     true,
 		IsOurFactory: true,
@@ -252,17 +296,14 @@ func extendCollectionMetadata(nft *types.Collection) (err error) {
 		}
 	}
 
-	/*
-		if err = extendNFTCollectionMintDetails(nft); err != nil {
-			log.Criticalf("failed to extend NFT Collection MintDetails %s; %s", nft.Address.String(), err.Error())
-			return err
-		}
-	*/
+	if err = extendNFTCollectionMintDetails(nft); err != nil {
+		log.Criticalf("failed to extend NFT Collection MintDetails %s; %s", nft.Address.String(), err.Error())
+		return err
+	}
 
 	return nil
 }
 
-/*
 func extendNFTCollectionMintDetails(nft *types.Collection) (err error) {
 	nft.MintDetails = types.CollectionMintDetails{
 		PublicMint:    false,                                   // NB: also need to set fiLegacyCollectionIsOwnerOnly when registering
@@ -275,12 +316,15 @@ func extendNFTCollectionMintDetails(nft *types.Collection) (err error) {
 		RevealTime:    time.Time{},
 	}
 
-	nft.MemeDetails = types.MemeTokenDetails{
-		InitialReserves: big.Int{},
-		BlocksAmount:    big.Int{},
-		BlocksFee:       big.Int{},
-		BlocksMaxSupply: 0,
-	}
+	/*
+		nft.MemeDetails = types.MemeTokenDetails{
+			InitialReserves: "", //big.Int{},
+			StakingAmount:   "", //big.Int{},
+			BlocksAmount:    "", //big.Int{},
+			BlocksFee:       "", //big.Int{},
+			BlocksMaxSupply: 0,
+		}
+	*/
 
 	if nft.Type == types.ContractTypeERC1155 {
 		nft.MintDetails.PublicMint, err = repo.CollectionErc1155IsPrivate(&nft.Address)
@@ -355,20 +399,22 @@ func extendNFTCollectionMintDetails(nft *types.Collection) (err error) {
 
 	return nil
 }
-*/
 
 // addObservedContract adds new observed contract into repository and log observer.
 func addObservedContract(nft *types.Collection, evt *eth.Log) {
-	ca := common.Address{}
-	if nil != evt.Data && 32 <= len(evt.Data) {
-		ca.SetBytes(evt.Data[:32])
-	}
+	/*
+		ca := common.Address{}
+		if nil != evt.Data && 32 <= len(evt.Data) {
+			ca.SetBytes(evt.Data[:32])
+		}
+	*/
 
 	oc := types.ObservedContract{
 		Address:     nft.Address,
+		Name:        nft.Name,
 		Type:        nft.Type,
 		Created:     nft.Created,
-		Creator:     ca,
+		Creator:     nft.Creator, // ca,
 		BlockNumber: evt.BlockNumber,
 		DeployedBy:  evt.TxHash,
 	}

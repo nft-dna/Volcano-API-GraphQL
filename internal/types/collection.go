@@ -30,6 +30,7 @@ type MemeTokenDetails struct {
 // Artion basically recognizes NFT contracts deployed form a designated factory.
 type Collection struct {
 	Address    common.Address  `bson:"_id"`
+	Creator    common.Address  `bson:"creator"`
 	Type       string          `bson:"type"`
 	Name       string          `bson:"name"`
 	Symbol     string          `bson:"symbol"`
@@ -38,7 +39,7 @@ type Collection struct {
 	IsActive   bool            `bson:"is_active"`
 	VerifiedBy *common.Address `bson:"verified_by"`
 	//
-	IsOurFactory bool `bson:"isOurFactory"`
-	//MintDetails  CollectionMintDetails `bson:"mintDetails"`
-	//MemeDetails  MemeTokenDetails      `bson:"memeDetails"`
+	IsOurFactory bool                  `bson:"isOurFactory"`
+	MintDetails  CollectionMintDetails `bson:"mintDetails"`
+	MemeDetails  MemeTokenDetails      `bson:"memeDetails"`
 }

@@ -52,6 +52,7 @@ const (
 	//fiLegacyCollectionMintEndTime   = "mintEndTime"
 	//fiLegacyCollectionRevealTime    = "revealTime"
 	fiLegacyCollectionMintDetails = "mintDetails"
+	fiLegacyCollectionTotalSupply = "totalSupply"
 )
 
 func (sdb *SharedMongoDbBridge) GetLegacyCollection(address common.Address) (collection *types.LegacyCollection, err error) {
@@ -127,6 +128,31 @@ func (sdb *SharedMongoDbBridge) InsertLegacyCollection(c types.LegacyCollection)
 		return err
 	}
 	return nil
+}
+
+func (sdb *SharedMongoDbBridge) IncCollectionSupply(address common.Address, count uint64) bool {
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyCollection)
+
+	res, err := col.UpdateOne(
+		context.Background(),
+		bson.D{
+			{Key: fiLegacyCollectionAddress, Value: strings.ToLower(address.String())},
+		},
+		bson.D{
+			{Key: "$inc", Value: bson.D{
+				{Key: fiLegacyCollectionTotalSupply, Value: count},
+			}},
+		},
+	)
+	if err != nil {
+		log.Errorf("can not increment supply LegacyCollection; %s", err)
+		return false
+	}
+	if res.MatchedCount == 0 {
+		log.Debugf("can not increment supply LegacyCollection; %s not found", address.String())
+		return false
+	}
+	return true
 }
 
 func (sdb *SharedMongoDbBridge) ApproveCollection(address common.Address) error {

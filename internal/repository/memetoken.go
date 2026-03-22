@@ -40,6 +40,10 @@ func (p *Proxy) StoreMemeToken(nft *types.Collection) error {
 	return p.db.StoreMemeToken(nft)
 }
 
+func (p *Proxy) InsertLegacyMemeToken(c types.LegacyCollection, isUpload bool) error {
+	return p.shared.InsertLegacyMemeToken(c, isUpload)
+}
+
 func (p *Proxy) GetMemeToken(address common.Address) (*types.Collection, error) {
 	key := "Col-" + address.String()
 	user, err, _ := p.callGroup.Do(key, func() (interface{}, error) {
@@ -52,8 +56,12 @@ func (p *Proxy) ListMemeTokens(cursor types.Cursor, count int, backward bool) (*
 	return p.db.ListMemeTokens(cursor, count, backward)
 }
 
-func (p *Proxy) MemeSupply(contract *common.Address) (*big.Int, error) {
-	return p.rpc.MemeSupply(contract)
+func (p *Proxy) MemeBlocksSupply(contract *common.Address) (*big.Int, error) {
+	return p.rpc.MemeBlocksSupply(contract)
+}
+
+func (p *Proxy) IncMemeBlocksSupply(contract *common.Address, count uint64) bool {
+	return p.shared.IncMemeBlocksSupply(*contract, count)
 }
 
 // CanMint checks if the given user can mint a new token on the given NFT contract.

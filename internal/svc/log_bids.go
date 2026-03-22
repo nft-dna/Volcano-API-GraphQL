@@ -3,16 +3,22 @@ package svc
 
 import (
 	"artion-api-graphql/internal/types"
+	"math/big"
+	"time"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	eth "github.com/ethereum/go-ethereum/core/types"
-	"math/big"
-	"time"
 )
 
 // auctionBidPlaced processes an event for newly posted auction bid.
 // Auction::BidPlaced(address indexed nftAddress, uint256 indexed tokenId, address indexed bidder, uint256 bid)
 func auctionBidPlaced(evt *eth.Log, _ *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("auctionBidPlaced event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
 	// sanity check: 1 + 3 topics; 1 x uint256 = 32 bytes
 	if len(evt.Data) != 32 || len(evt.Topics) != 4 {
 		log.Errorf("not Auction::BidPlaced() event #%d/#%d; expected 32 bytes of data, %d given; expected 4 topics, %d given",
@@ -111,6 +117,12 @@ func auctionBidPlaced(evt *eth.Log, _ *logObserver) {
 // auctionBidWithdrawn processes an event for removed auction bid.
 // Auction::BidWithdrawn(address indexed nftAddress, uint256 indexed tokenId, address indexed bidder, uint256 bid)
 func auctionBidWithdrawn(evt *eth.Log, _ *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("auctionBidWithdrawn event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 3 topics; 1 x uint256 = 32 bytes
 	if len(evt.Data) != 32 || len(evt.Topics) != 4 {
 		log.Errorf("not Auction::BidWithdrawn() event #%d/#%d; expected 32 bytes of data, %d given; expected 4 topics, %d given",

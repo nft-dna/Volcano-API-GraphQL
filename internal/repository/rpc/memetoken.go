@@ -79,6 +79,6 @@ func (o *Opera) CanMintMemeBlocks(contract *common.Address, user *common.Address
 	return o.Erc20CanMintBlocks(contract, user, fee)
 }
 
-func (o *Opera) MemeSupply(contract *common.Address) (*big.Int, error) {
+func (o *Opera) MemeBlocksSupply(contract *common.Address) (*big.Int, error) {
 	return o.Erc20MintBlocksSupply(contract, nil)
 }

@@ -2,6 +2,9 @@
 package svc
 
 import (
+	"math/big"
+
+	"github.com/ethereum/go-ethereum/common"
 	eth "github.com/ethereum/go-ethereum/core/types"
 )
 
@@ -10,6 +13,12 @@ import (
 
 // memeToken::event BlockMinted(address)
 func memeTokenBlocksMinted(evt *eth.Log, _ *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("memeTokenBlocksMinted event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: no extra topics; receiver address 32 bytes and uint256 blocksCount 32 bytes
 	if len(evt.Data) < 64 || len(evt.Topics) != 1 {
 		log.Errorf("not MemeToken::BlocksMinted() event #%d/#%d; expected at least 64 bytes of data, %d given; expected 1 topic, %d given",
@@ -17,44 +26,13 @@ func memeTokenBlocksMinted(evt *eth.Log, _ *logObserver) {
 		return
 	}
 
-	// MM TODO..
-	/*
-		// unpack the event data
-		args, err := repository.R().Erc721Abi().Unpack("Minted", evt.Data)
-		if err != nil {
-			log.Errorf("can not decode ERC721 %s mint data; %s", evt.Address.String(), err.Error())
-			return
-		}
+	ca := common.Address{}
+	ca.SetBytes(evt.Data[0:32])
+	count := new(big.Int).SetBytes(evt.Data[32:64]).Uint64()
 
-		// get the block header
-		blk, err := repo.GetHeader(evt.BlockNumber)
-		if err != nil {
-			log.Errorf("can not load event header #%d; %s", evt.BlockNumber, err.Error())
-			return
-		}
-
-		// make the token
-		tok := types.NewToken(&evt.Address, args[0].(*big.Int), args[2].(string), int64(blk.Time), evt.BlockNumber, evt.Index)
-		log.Infof("ERC-721 token %s found at %s block %d", tok.TokenId.String(), tok.Contract.String(), evt.BlockNumber)
-
-		// store the extra data
-		tok.CreatedBy = args[3].(common.Address)
-		// MM
-		tok.Symbol, err = repo.CollectionSymbol(&evt.Address)
-		if err != nil {
-			log.Errorf("%s symbol not known; %s", evt.Address.String(), err.Error())
-		}
-
-		if err := repo.TokenLikesViewsRefresh(tok); err != nil {
-			log.Errorf("could not load token views/likes %s/%s; %s", tok.TokenId.String(), tok.Contract.String(), err)
-		}
-
-		// write token to the persistent storage
-		if err := repo.StoreToken(tok); err != nil {
-			log.Errorf("could not store token %s at %s; %s", tok.TokenId.String(), tok.Contract.String(), err.Error())
-			return
-		}
-	*/
+	if !repo.IncMemeBlocksSupply(&ca, count) {
+		log.Errorf("MemeToken BlocksMinted event #%d/#%d; memetoken ca %s not found in database or update failed", evt.BlockNumber, evt.Index, ca.String())
+	}
 }
 
 /*

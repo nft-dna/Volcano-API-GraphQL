@@ -57,6 +57,7 @@ type LegacyCollection struct {
 	//
 	MintDetails CollectionMintDetails `bson:"mintDetails"`
 	MemeDetails MemeTokenDetails      `bson:"memeDetails"`
+	TotalSupply uint64                `bson:"totalSupply"`
 }
 
 // CategoriesAsInt provides a list of category ID-s
@@ -104,7 +105,7 @@ func DecodeCollectionApplication(data []byte) (*CollectionApplication, error) {
 	return &out, nil
 }
 
-func (app CollectionApplication) ToCollection(image string, owner *common.Address, isAppropriate bool, isInternal bool, isOwnerOnly bool, mintDet CollectionMintDetails, memeDet MemeTokenDetails) LegacyCollection {
+func (app CollectionApplication) ToCollection(image string, owner *common.Address, isAppropriate bool, isInternal bool, isOwnerOnly bool, mintDet CollectionMintDetails, memeDet MemeTokenDetails, totalSupply uint64) LegacyCollection {
 	categoriesStr := make([]string, len(app.Categories))
 	for i, categoryId := range app.Categories {
 		categoriesStr[i] = strconv.Itoa(int(categoryId))
@@ -133,5 +134,6 @@ func (app CollectionApplication) ToCollection(image string, owner *common.Addres
 		IsReviewed:    false,
 		MintDetails:   mintDet,
 		MemeDetails:   memeDet,
+		TotalSupply:   totalSupply,
 	}
 }

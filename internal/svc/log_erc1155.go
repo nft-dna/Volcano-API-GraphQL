@@ -16,6 +16,12 @@ import (
 // including a new token Mint(), if the sender is zero address.
 // ERC1155::TransferSingle(address indexed _operator, address indexed _from, address indexed _to, uint256 _id, uint256 _amount)
 func erc1155TokenTransfer(evt *eth.Log, lo *logObserver) {
+
+	if !repo.IsObservedContract(&evt.Address) {
+		log.Debugf("erc1155TokenTransfer event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		return
+	}
+
 	// sanity check: 1 + 3 topics; 2 x uint256 = 2 x 32 bytes of data
 	if len(evt.Data) != 64 || len(evt.Topics) != 4 {
 		log.Errorf("not ERC1155::TransferSingle() event #%d / #%d; expected 64 bytes of data, %d given; expected 4 topics, %d given",
@@ -45,6 +51,10 @@ func erc1155TokenTransfer(evt *eth.Log, lo *logObserver) {
 	// if this is a mint call (the sender is zero), we just add the NFT record
 	if bytes.Equal(zeroAddress.Bytes(), from.Bytes()) {
 		addERC1155Token(&evt.Address, tokenId, &to, evt, lo)
+
+		if !repo.IncCollectionSupply(&evt.Address, 1) {
+			log.Errorf("ERC-1155 Minted event #%d/#%d; collection %s not found in database or update failed", evt.BlockNumber, evt.Index, evt.Address.String())
+		}
 	} else {
 		// if it's not a mint, we need to update sender's ownership balance as well
 		if err := repo.StoreOwnership(&types.Ownership{

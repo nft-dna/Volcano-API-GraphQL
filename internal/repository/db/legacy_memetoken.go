@@ -50,6 +50,7 @@ const (
 	//fiLegacyMemeTokenBlocksFee       = "blocksFee"
 	//fiLegacyMemeTokenBlocksMaxSupply = "blocksMaxSupply"
 	fiLegacyMemeTokenMemeDetails = "memeDetails"
+	fiLegacyMemeTokenTotalSupply = "totalSupply"
 )
 
 func (sdb *SharedMongoDbBridge) GetLegacyMemeToken(address common.Address) (collection *types.LegacyCollection, err error) {
@@ -78,51 +79,152 @@ func (sdb *SharedMongoDbBridge) isMemeTokenKnown(col *mongo.Collection, nft *typ
 }
 
 // InsertMemeToken inserts collection record.
-func (sdb *SharedMongoDbBridge) InsertLegacyMemeToken(c types.LegacyCollection) error {
+func (sdb *SharedMongoDbBridge) InsertLegacyMemeToken(c types.LegacyCollection, isUpload bool) error {
 	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
 
 	if sdb.isMemeTokenKnown(col, &c) {
-		return nil
+		if !isUpload {
+			return nil
+		}
 	}
 
-	if _, err := col.InsertOne(
-		context.Background(),
-		bson.D{
-			{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(c.Address.String())},
-			{Key: fiLegacyMemeTokenName, Value: c.Name},
-			{Key: fiLegacyMemeTokenSymbol, Value: c.Symbol},
-			{Key: fiLegacyMemeTokenDescription, Value: c.Description},
-			{Key: fiLegacyMemeTokenCategoriesStr, Value: c.CategoriesStr},
-			{Key: fiLegacyMemeTokenImage, Value: c.Image},
-			{Key: fiLegacyMemeTokenOwner, Value: strings.ToLower(c.Owner.String())},
-			{Key: fiLegacyMemeTokenFeeRecipient, Value: strings.ToLower(c.FeeRecipient.String())},
-			{Key: fiLegacyMemeTokenRoyaltyValue, Value: c.RoyaltyValue},
-			{Key: fiLegacyMemeTokenDiscord, Value: c.DiscordUrl},
-			{Key: fiLegacyMemeTokenEmail, Value: c.Email},
-			{Key: fiLegacyMemeTokenTelegram, Value: c.TelegramUrl},
-			{Key: fiLegacyMemeTokenSiteUrl, Value: c.SiteUrl},
-			{Key: fiLegacyMemeTokenMediumHandle, Value: c.MediumUrl},
-			{Key: fiLegacyMemeTokenTwitterHandle, Value: c.TwitterUrl},
-			{Key: fiLegacyMemeTokenInstagramHandle, Value: c.Instagram},
-			{Key: fiLegacyMemeTokenIsAppropriate, Value: c.IsAppropriate},
-			{Key: fiLegacyMemeTokenIsInternal, Value: c.IsInternal},
-			{Key: fiLegacyMemeTokenIsOwnerOnly, Value: c.IsOwnerOnly},
-			{Key: fiLegacyMemeTokenIsVerified, Value: c.IsVerified},
-			{Key: fiLegacyMemeTokenIsReviewed, Value: c.IsReviewed},
-			{Key: fiLegacyMemeTokenAppropriateUpdate, Value: time.Now()},
-			// isInternal Meme Token (created by marketplace users)
-			//{Key: fiLegacyMemeTokenInitialReserves, Value: c.MemeDetails.InitialReserves},
-			//{Key: fiLegacyMemeTokenStakingAmount, Value: c.MemeDetails.StakingAmount},
-			//{Key: fiLegacyMemeTokenBlocksAmount, Value: c.MemeDetails.BlocksAmount},
-			//{Key: fiLegacyMemeTokenBlocksFee, Value: c.MemeDetails.BlocksFee},
-			//{Key: fiLegacyMemeTokenBlocksMaxSupply, Value: c.MemeDetails.BlocksMaxSupply},
-			{Key: fiLegacyMemeTokenMemeDetails, Value: c.MemeDetails},
-		},
-	); err != nil {
-		log.Errorf("can not insert MemeToken; %s", err)
-		return err
+	/*
+		if _, err := col.InsertOne(
+			context.Background(),
+			bson.D{
+				{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(c.Address.String())},
+				{Key: fiLegacyMemeTokenName, Value: c.Name},
+				{Key: fiLegacyMemeTokenSymbol, Value: c.Symbol},
+				{Key: fiLegacyMemeTokenDescription, Value: c.Description},
+				{Key: fiLegacyMemeTokenCategoriesStr, Value: c.CategoriesStr},
+				{Key: fiLegacyMemeTokenImage, Value: c.Image},
+				{Key: fiLegacyMemeTokenOwner, Value: strings.ToLower(c.Owner.String())},
+				{Key: fiLegacyMemeTokenFeeRecipient, Value: strings.ToLower(c.FeeRecipient.String())},
+				{Key: fiLegacyMemeTokenRoyaltyValue, Value: c.RoyaltyValue},
+				{Key: fiLegacyMemeTokenDiscord, Value: c.DiscordUrl},
+				{Key: fiLegacyMemeTokenEmail, Value: c.Email},
+				{Key: fiLegacyMemeTokenTelegram, Value: c.TelegramUrl},
+				{Key: fiLegacyMemeTokenSiteUrl, Value: c.SiteUrl},
+				{Key: fiLegacyMemeTokenMediumHandle, Value: c.MediumUrl},
+				{Key: fiLegacyMemeTokenTwitterHandle, Value: c.TwitterUrl},
+				{Key: fiLegacyMemeTokenInstagramHandle, Value: c.Instagram},
+				{Key: fiLegacyMemeTokenIsAppropriate, Value: c.IsAppropriate},
+				{Key: fiLegacyMemeTokenIsInternal, Value: c.IsInternal},
+				{Key: fiLegacyMemeTokenIsOwnerOnly, Value: c.IsOwnerOnly},
+				{Key: fiLegacyMemeTokenIsVerified, Value: c.IsVerified},
+				{Key: fiLegacyMemeTokenIsReviewed, Value: c.IsReviewed},
+				{Key: fiLegacyMemeTokenAppropriateUpdate, Value: time.Now()},
+				// isInternal Meme Token (created by marketplace users)
+				//{Key: fiLegacyMemeTokenInitialReserves, Value: c.MemeDetails.InitialReserves},
+				//{Key: fiLegacyMemeTokenStakingAmount, Value: c.MemeDetails.StakingAmount},
+				//{Key: fiLegacyMemeTokenBlocksAmount, Value: c.MemeDetails.BlocksAmount},
+				//{Key: fiLegacyMemeTokenBlocksFee, Value: c.MemeDetails.BlocksFee},
+				//{Key: fiLegacyMemeTokenBlocksMaxSupply, Value: c.MemeDetails.BlocksMaxSupply},
+				{Key: fiLegacyMemeTokenMemeDetails, Value: c.MemeDetails},
+			},
+		); err != nil {
+			log.Errorf("can not insert MemeToken; %s", err)
+			return err
+		}
+	*/
+
+	if isUpload {
+		//id := c.ID()
+		_, err := col.UpdateOne(
+			context.Background(),
+			//bson.D{{Key: fieldId, Value: id}},
+			bson.D{{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(c.Address.String())}},
+			bson.D{
+				//{Key: "$set", Value: c},
+				{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(c.Address.String())},
+				{Key: fiLegacyMemeTokenName, Value: c.Name},
+				{Key: fiLegacyMemeTokenSymbol, Value: c.Symbol},
+				{Key: fiLegacyMemeTokenDescription, Value: c.Description},
+				{Key: fiLegacyMemeTokenCategoriesStr, Value: c.CategoriesStr},
+				{Key: fiLegacyMemeTokenImage, Value: c.Image},
+				{Key: fiLegacyMemeTokenOwner, Value: strings.ToLower(c.Owner.String())},
+				{Key: fiLegacyMemeTokenFeeRecipient, Value: strings.ToLower(c.FeeRecipient.String())},
+				{Key: fiLegacyMemeTokenRoyaltyValue, Value: c.RoyaltyValue},
+				{Key: fiLegacyMemeTokenDiscord, Value: c.DiscordUrl},
+				{Key: fiLegacyMemeTokenEmail, Value: c.Email},
+				{Key: fiLegacyMemeTokenTelegram, Value: c.TelegramUrl},
+				{Key: fiLegacyMemeTokenSiteUrl, Value: c.SiteUrl},
+				{Key: fiLegacyMemeTokenMediumHandle, Value: c.MediumUrl},
+				{Key: fiLegacyMemeTokenTwitterHandle, Value: c.TwitterUrl},
+				{Key: fiLegacyMemeTokenInstagramHandle, Value: c.Instagram},
+				{Key: fiLegacyMemeTokenIsAppropriate, Value: c.IsAppropriate},
+				{Key: fiLegacyMemeTokenIsInternal, Value: c.IsInternal},
+				{Key: fiLegacyMemeTokenIsOwnerOnly, Value: c.IsOwnerOnly},
+				{Key: fiLegacyMemeTokenIsVerified, Value: c.IsVerified},
+				{Key: fiLegacyMemeTokenIsReviewed, Value: c.IsReviewed},
+				{Key: fiLegacyMemeTokenAppropriateUpdate, Value: time.Now()},
+				// isInternal Meme Token (created by marketplace users)
+				{Key: fiLegacyMemeTokenMemeDetails, Value: c.MemeDetails},
+				//{Key: "$setOnInsert", Value: bson.D{
+				//	{Key: fieldId, Value: id},
+				//}},
+			},
+			options.Update().SetUpsert(true),
+		)
+		if err != nil {
+			log.Errorf("can not insert MemeToken; %s", err)
+			return err
+		}
+	} else {
+		//id := c.ID()
+		_, err := col.UpdateOne(
+			context.Background(),
+			//bson.D{{Key: fieldId, Value: id}},
+			bson.D{{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(c.Address.String())}},
+			bson.D{
+				{Key: "$set", Value: bson.D{
+					{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(c.Address.String())},
+					{Key: fiLegacyMemeTokenName, Value: c.Name},
+					{Key: fiLegacyMemeTokenSymbol, Value: c.Symbol},
+					{Key: fiLegacyMemeTokenOwner, Value: strings.ToLower(c.Owner.String())},
+					{Key: fiLegacyMemeTokenIsAppropriate, Value: c.IsAppropriate},
+					{Key: fiLegacyMemeTokenIsInternal, Value: c.IsInternal},
+					{Key: fiLegacyMemeTokenIsOwnerOnly, Value: c.IsOwnerOnly},
+					{Key: fiLegacyMemeTokenIsVerified, Value: c.IsVerified},
+					{Key: fiLegacyMemeTokenIsReviewed, Value: c.IsReviewed},
+					{Key: fiLegacyMemeTokenAppropriateUpdate, Value: time.Now()},
+					// isInternal Meme Token (created by marketplace users)
+					{Key: fiLegacyMemeTokenMemeDetails, Value: c.MemeDetails},
+				}},
+			},
+			options.Update().SetUpsert(true),
+		)
+		if err != nil {
+			log.Errorf("can not insert MemeToken; %s", err)
+			return err
+		}
 	}
 	return nil
+}
+
+func (sdb *SharedMongoDbBridge) IncMemeBlocksSupply(address common.Address, count uint64) bool {
+	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+
+	res, err := col.UpdateOne(
+		context.Background(),
+		bson.D{
+			{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(address.String())},
+		},
+		bson.D{
+			{Key: "$inc", Value: bson.D{
+				{Key: fiLegacyMemeTokenTotalSupply, Value: count},
+			}},
+		},
+	)
+	if err != nil {
+		log.Errorf("can not increment supply MemeToken; %s", err)
+		return false
+	}
+	if res.MatchedCount == 0 {
+		log.Debugf("can not increment supply MemeToken; %s not found", address.String())
+		return false
+	}
+	return true
 }
 
 func (sdb *SharedMongoDbBridge) ApproveMemeToken(address common.Address) error {
