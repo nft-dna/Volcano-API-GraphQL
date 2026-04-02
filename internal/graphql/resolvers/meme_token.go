@@ -207,6 +207,15 @@ func (t *MemeToken) FeeRecipientUser() (*User, error) {
 	return getUserByAddressPtr(t.FeeRecipient)
 }
 
+func (t *MemeToken) CurrentTotalSupply() hexutil.Big {
+	if t.TotalSupply == 0 {
+		return *(*hexutil.Big)(big.NewInt(0))
+	}
+	n := new(big.Int)
+	n, _ = n.SetString(t.MemeDetails.BlocksFee, 16)
+	return *(*hexutil.Big)(n)
+}
+
 func (t *MemeToken) InitialReserve() hexutil.Big {
 	if t.MemeDetails.InitialReserves == "" {
 		return *(*hexutil.Big)(big.NewInt(0))

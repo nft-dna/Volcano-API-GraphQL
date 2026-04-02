@@ -122,6 +122,7 @@ func (sdb *SharedMongoDbBridge) InsertLegacyCollection(c types.LegacyCollection)
 			//{Key: fiLegacyCollectionMintEndTime, Value: c.MintDetails.MintEndTime},
 			//{Key: fiLegacyCollectionRevealTime, Value: c.MintDetails.RevealTime},
 			{Key: fiLegacyCollectionMintDetails, Value: c.MintDetails},
+			{Key: fiLegacyCollectionTotalSupply, Value: c.TotalSupply},
 		},
 	); err != nil {
 		log.Errorf("can not insert LegacyCollection; %s", err)

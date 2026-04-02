@@ -15,7 +15,7 @@ import (
 func memeTokenBlocksMinted(evt *eth.Log, _ *logObserver) {
 
 	if !repo.IsObservedContract(&evt.Address) {
-		log.Debugf("memeTokenBlocksMinted event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		log.Warningf("memeTokenBlocksMinted event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
 		return
 	}
 

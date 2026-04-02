@@ -37,7 +37,12 @@ func (p *Proxy) CollectionSymbol(adr *common.Address) (string, error) {
 
 // StoreCollection adds the specified NFT collection contract record into persistent storage.
 func (p *Proxy) StoreCollection(nft *types.Collection) error {
-	return p.db.StoreCollection(nft)
+	err := p.db.StoreCollection(nft)
+	if err != nil {
+		return err
+	}
+	p.cache.InvalidateLegacyMemeToken(nft.Address)
+	return nil
 }
 
 func (p *Proxy) GetCollection(address common.Address) (*types.Collection, error) {

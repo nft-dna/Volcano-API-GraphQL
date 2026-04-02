@@ -84,6 +84,9 @@ type Collection {
     # Erc1155 collection max item replica (0 if not set)
     maxItemCount: BigInt    
 
+    # Items minted
+    currentTotalSupply: BigInt!       
+
     # Time when mint could start (0 if not set)
     mintStartTime: Time  
 

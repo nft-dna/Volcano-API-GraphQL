@@ -160,6 +160,7 @@ func (sdb *SharedMongoDbBridge) InsertLegacyMemeToken(c types.LegacyCollection, 
 				{Key: fiLegacyMemeTokenAppropriateUpdate, Value: time.Now()},
 				// isInternal Meme Token (created by marketplace users)
 				{Key: fiLegacyMemeTokenMemeDetails, Value: c.MemeDetails},
+				//{Key: fiLegacyMemeTokenTotalSupply, Value: c.TotalSupply},
 				//{Key: "$setOnInsert", Value: bson.D{
 				//	{Key: fieldId, Value: id},
 				//}},
@@ -190,6 +191,7 @@ func (sdb *SharedMongoDbBridge) InsertLegacyMemeToken(c types.LegacyCollection, 
 					{Key: fiLegacyMemeTokenAppropriateUpdate, Value: time.Now()},
 					// isInternal Meme Token (created by marketplace users)
 					{Key: fiLegacyMemeTokenMemeDetails, Value: c.MemeDetails},
+					{Key: fiLegacyMemeTokenTotalSupply, Value: c.TotalSupply},
 				}},
 			},
 			options.Update().SetUpsert(true),

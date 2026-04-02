@@ -174,7 +174,7 @@ func (p *Proxy) Close() {
 // registerContracts will pass contract addresses to the RPC provider.
 func (p *Proxy) registerContracts() {
 	//var contractTypes = []string{"auction", "market", "rng", "token_registry", "royalty_registry"}
-	var contractTypes = []string{"auction", "market", "rng", "token_registry"}
+	var contractTypes = []string{"auction", "market", "rng", "token_registry"} //, "erc20_factory", "erc721_factory", "erc1155_factory"}
 
 	for _, ct := range contractTypes {
 		addr, blk := p.ObservedContractAddressByType(ct)

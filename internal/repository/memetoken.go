@@ -37,7 +37,12 @@ func (p *Proxy) MemeTokenSymbol(adr *common.Address) (string, error) {
 
 // StoreCollection adds the specified NFT collection contract record into persistent storage.
 func (p *Proxy) StoreMemeToken(nft *types.Collection) error {
-	return p.db.StoreMemeToken(nft)
+	err := p.db.StoreMemeToken(nft)
+	if err != nil {
+		return err
+	}
+	p.cache.InvalidateLegacyMemeToken(nft.Address)
+	return nil
 }
 
 func (p *Proxy) InsertLegacyMemeToken(c types.LegacyCollection, isUpload bool) error {

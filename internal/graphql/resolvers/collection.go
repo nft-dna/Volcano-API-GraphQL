@@ -213,6 +213,15 @@ func (t *Collection) IsPublicMintable() bool {
 	return (t.IsOwnerOnly == false)
 }
 
+func (t *Collection) CurrentTotalSupply() hexutil.Big {
+	if t.TotalSupply == 0 {
+		return *(*hexutil.Big)(big.NewInt(0))
+	}
+	n := new(big.Int)
+	n, _ = n.SetString(t.MemeDetails.BlocksFee, 16)
+	return *(*hexutil.Big)(n)
+}
+
 func (t *Collection) IsErc1155() bool {
 	return t.MintDetails.IsErc1155
 }
