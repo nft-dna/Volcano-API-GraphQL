@@ -46,10 +46,12 @@ const (
 	// isInternal Meme Token (created by marketplace users)
 	//fiLegacyMemeTokenInitialReserves = "initialReserves"
 	//fiLegacyMemeTokenStakingAmount   = "stakingAmount"
-	//fiLegacyMemeTokenBlocksAmount    = "blocksAmount"
+	fiLegacyMemeTokenMemeDetails  = "memeDetails"
+	fiLegacyMemeTokenBlocksAmount = "blocksAmount"
 	//fiLegacyMemeTokenBlocksFee       = "blocksFee"
-	//fiLegacyMemeTokenBlocksMaxSupply = "blocksMaxSupply"
-	fiLegacyMemeTokenMemeDetails = "memeDetails"
+	fiLegacyMemeTokenBlocksMaxSupply   = "memeDetails.blocksMaxSupply"
+	fiLegacyMemeTokenBlocksTotalSupply = "memeDetails.blocksTotalSupply"
+
 	fiLegacyMemeTokenTotalSupply = "totalSupply"
 )
 
@@ -120,6 +122,7 @@ func (sdb *SharedMongoDbBridge) InsertLegacyMemeToken(c types.LegacyCollection, 
 				//{Key: fiLegacyMemeTokenBlocksAmount, Value: c.MemeDetails.BlocksAmount},
 				//{Key: fiLegacyMemeTokenBlocksFee, Value: c.MemeDetails.BlocksFee},
 				//{Key: fiLegacyMemeTokenBlocksMaxSupply, Value: c.MemeDetails.BlocksMaxSupply},
+				//{Key: fiLegacyMemeTokenBlocksToitalSupply, Value: c.MemeDetails.BlocksTotalSupply},
 				{Key: fiLegacyMemeTokenMemeDetails, Value: c.MemeDetails},
 			},
 		); err != nil {
@@ -212,9 +215,32 @@ func (sdb *SharedMongoDbBridge) IncMemeBlocksSupply(address common.Address, coun
 		bson.D{
 			{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(address.String())},
 		},
-		bson.D{
-			{Key: "$inc", Value: bson.D{
-				{Key: fiLegacyMemeTokenTotalSupply, Value: count},
+		mongo.Pipeline{
+			{{
+				Key: "$set",
+				Value: bson.D{
+					// totalSupply += count * blocksAmount
+					{Key: fiLegacyMemeTokenTotalSupply, Value: bson.D{
+						{Key: "$add", Value: bson.A{
+							bson.D{{Key: "$ifNull", Value: bson.A{"$" + fiLegacyMemeTokenTotalSupply, 0}}},
+							bson.D{
+								{Key: "$multiply", Value: bson.A{
+									count,
+									2,
+									bson.D{{Key: "$ifNull", Value: bson.A{"$" + fiLegacyMemeTokenBlocksAmount, 0}}},
+								}},
+							},
+						}},
+					}},
+
+					// blocksTotalSupply += count
+					{Key: fiLegacyMemeTokenBlocksTotalSupply, Value: bson.D{
+						{Key: "$add", Value: bson.A{
+							bson.D{{Key: "$ifNull", Value: bson.A{"$" + fiLegacyMemeTokenBlocksTotalSupply, 0}}},
+							count,
+						}},
+					}},
+				},
 			}},
 		},
 	)

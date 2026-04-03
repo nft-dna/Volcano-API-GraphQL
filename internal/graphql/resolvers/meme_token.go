@@ -260,6 +260,10 @@ func (t *MemeToken) BlocksMaxSupply() hexutil.Big {
 	return *(*hexutil.Big)(big.NewInt(int64(t.MemeDetails.BlocksMaxSupply)))
 }
 
+func (t *MemeToken) BlocksTotalSupply() hexutil.Big {
+	return *(*hexutil.Big)(big.NewInt(int64(t.MemeDetails.BlocksTotalSupply)))
+}
+
 // CanMint resolves the minting privilege for the given user by address.
 func (t *MemeToken) CanMint(args struct {
 	User common.Address

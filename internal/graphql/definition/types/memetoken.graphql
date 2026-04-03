@@ -82,6 +82,9 @@ type MemeToken {
     blocksMaxSupply: BigInt!           
 
     # Token blocks minted
+    blocksTotalSupply: BigInt!      
+
+    # Tokens minted         
     currentTotalSupply: BigInt!            
 
     # canMint checks if the given user address can create new tokens on the collection

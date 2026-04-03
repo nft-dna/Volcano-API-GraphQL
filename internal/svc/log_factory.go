@@ -11,7 +11,7 @@ import (
 
 func newTokenContract(evt *eth.Log, lo *logObserver) {
 	if !repo.IsObservedContract(&evt.Address) {
-		log.Debugf("newTokenContract event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		log.Warningf("newTokenContract event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
 		return
 	}
 
@@ -131,9 +131,12 @@ func extendMemeTokenMetadata(meme *types.Collection) (err error) {
 			//MintDetails: meme.MintDetails,
 			MemeDetails: meme.MemeDetails,
 		}
-		repo.InsertLegacyMemeToken(legacyCollection, false)
-	}
 
+		err = repo.InsertLegacyMemeToken(legacyCollection, false)
+		if err != nil {
+			log.Errorf("failed to insert Meme Token %s; %s", meme.Address.String(), err.Error())
+		}
+	}
 	return nil
 }
 
@@ -195,6 +198,13 @@ func extendMemeTokenMintDetails(meme *types.Collection) (err error) {
 		meme.MemeDetails.BlocksMaxSupply = bVal.Uint64()
 	}
 
+	bVal, err = repo.CollectionErc20BlocksTotalSupply(&meme.Address)
+	if err != nil {
+		log.Errorf("%s %s blocksTotalSupply not known; %s", meme.Type, meme.Address.String(), err.Error())
+	} else {
+		meme.MemeDetails.BlocksTotalSupply = bVal.Uint64()
+	}
+
 	return nil
 }
 
@@ -204,7 +214,7 @@ func extendMemeTokenMintDetails(meme *types.Collection) (err error) {
 func newNFTContract(evt *eth.Log, lo *logObserver) {
 
 	if !repo.IsObservedContract(&evt.Address) {
-		log.Debugf("newNFTContract event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
+		log.Warningf("newNFTContract event #%d / %d on foreign contract %s skipped", evt.BlockNumber, evt.Index, evt.Address.String())
 		return
 	}
 
@@ -323,6 +333,7 @@ func extendNFTCollectionMintDetails(nft *types.Collection) (err error) {
 			BlocksAmount:    "", //big.Int{},
 			BlocksFee:       "", //big.Int{},
 			BlocksMaxSupply: 0,
+			BlocksTotalSupply: 0,
 		}
 	*/
 

@@ -65,11 +65,12 @@ func (p *Proxy) UploadMemeTokenApplication(app types.CollectionApplication, imag
 		RevealTime:    time.Time{},
 	}
 	memeDetails := types.MemeTokenDetails{
-		InitialReserves: "", //big.Int{},
-		StakingAmount:   "", //big.Int{},
-		BlocksAmount:    "", //big.Int{},
-		BlocksFee:       "", //big.Int{},
-		BlocksMaxSupply: 0,
+		InitialReserves:   "", //big.Int{},
+		StakingAmount:     "", //big.Int{},
+		BlocksAmount:      "", //big.Int{},
+		BlocksFee:         "", //big.Int{},
+		BlocksMaxSupply:   0,
+		BlocksTotalSupply: 0,
 	}
 	totalSupply := uint64(0)
 
@@ -144,6 +145,14 @@ func (p *Proxy) extendMemeTokenDetails(adr *common.Address, memeDetails *types.M
 		isInternal = false
 	} else {
 		memeDetails.BlocksMaxSupply = bVal.Uint64()
+	}
+
+	bVal, err = p.CollectionErc20BlocksTotalSupply(adr)
+	if err != nil {
+		log.Errorf("%s blocksTotalSupply not known; %s", adr.String(), err.Error())
+		isInternal = false
+	} else {
+		memeDetails.BlocksTotalSupply = bVal.Uint64()
 	}
 
 	return isInternal

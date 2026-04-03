@@ -23,6 +23,7 @@ type MemeTokenDetails struct {
 	BlocksAmount    big.Int  `bson:"blocksAmount"`
 	BlocksFee       big.Int `bson:"blocksFee"`
 	BlocksMaxSupply uint64  `bson:"blocksMaxSupply"`
+	BlocksTotalSupply uint64 `bson:"blocksTotalSupply"`
 }
 */
 

@@ -207,3 +207,7 @@ func (p *Proxy) CollectionErc20BlocksFee(adr *common.Address) (*big.Int, error) 
 func (p *Proxy) CollectionErc20BlocksMaxSupply(adr *common.Address) (*big.Int, error) {
 	return p.rpc.Erc20MintBlocksMaxSupply(adr, nil)
 }
+
+func (p *Proxy) CollectionErc20BlocksTotalSupply(adr *common.Address) (*big.Int, error) {
+	return p.rpc.Erc20MintBlocksSupply(adr, nil)
+}
