@@ -56,7 +56,7 @@ const (
 )
 
 func (sdb *SharedMongoDbBridge) GetLegacyMemeToken(address common.Address) (collection *types.LegacyCollection, err error) {
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 	ctx := context.Background()
 	filter := bson.D{
 		{Key: fiLegacyMemeTokenAddress, Value: strings.ToLower(address.String())},
@@ -82,7 +82,7 @@ func (sdb *SharedMongoDbBridge) isMemeTokenKnown(col *mongo.Collection, nft *typ
 
 // InsertMemeToken inserts collection record.
 func (sdb *SharedMongoDbBridge) InsertLegacyMemeToken(c types.LegacyCollection, isUpload bool) error {
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 
 	if sdb.isMemeTokenKnown(col, &c) {
 		if !isUpload {
@@ -208,7 +208,7 @@ func (sdb *SharedMongoDbBridge) InsertLegacyMemeToken(c types.LegacyCollection, 
 }
 
 func (sdb *SharedMongoDbBridge) IncMemeBlocksSupply(address common.Address, count uint64) bool {
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 
 	res, err := col.UpdateOne(
 		context.Background(),
@@ -256,7 +256,7 @@ func (sdb *SharedMongoDbBridge) IncMemeBlocksSupply(address common.Address, coun
 }
 
 func (sdb *SharedMongoDbBridge) ApproveMemeToken(address common.Address) error {
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 
 	if _, err := col.UpdateOne(
 		context.Background(),
@@ -279,7 +279,7 @@ func (sdb *SharedMongoDbBridge) ApproveMemeToken(address common.Address) error {
 }
 
 func (sdb *SharedMongoDbBridge) DeclineMemeToken(address common.Address) error {
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 
 	if _, err := col.DeleteOne(
 		context.Background(),
@@ -295,7 +295,7 @@ func (sdb *SharedMongoDbBridge) DeclineMemeToken(address common.Address) error {
 }
 
 func (sdb *SharedMongoDbBridge) BanMemeToken(address common.Address) error {
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 
 	if _, err := col.UpdateOne(
 		context.Background(),
@@ -318,7 +318,7 @@ func (sdb *SharedMongoDbBridge) BanMemeToken(address common.Address) error {
 }
 
 func (sdb *SharedMongoDbBridge) UnbanMemeToken(address common.Address) error {
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 
 	if _, err := col.UpdateOne(
 		context.Background(),
@@ -343,7 +343,7 @@ func (sdb *SharedMongoDbBridge) UnbanMemeToken(address common.Address) error {
 func (sdb *SharedMongoDbBridge) ListMemeTokensWithAppropriateUpdate(after time.Time, maxAmount int64) (out []*types.LegacyCollection, err error) {
 	db := (*MongoDbBridge)(sdb)
 	list := make([]*types.LegacyCollection, maxAmount)
-	col := db.client.Database(db.dbName).Collection(coMemeToken)
+	col := db.client.Database(db.dbName).Collection(coLegacyMemeToken)
 
 	cur, err := col.Find(
 		context.Background(),
@@ -371,7 +371,7 @@ func (sdb *SharedMongoDbBridge) ListMemeTokensWithAppropriateUpdate(after time.T
 
 // IsCollectionAppropriate checks if given collection is approved/not banned collection.
 func (sdb *SharedMongoDbBridge) IsMemeTokenAppropriate(contract *common.Address) bool {
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 
 	res := col.FindOne(
 		context.Background(),
@@ -390,7 +390,7 @@ func (sdb *SharedMongoDbBridge) IsMemeTokenAppropriate(contract *common.Address)
 func (sdb *SharedMongoDbBridge) ListLegacyMemeTokens(collectionFilter types.CollectionFilter, cursor types.Cursor, count int, backward bool) (out *types.LegacyCollectionList, err error) {
 	db := (*MongoDbBridge)(sdb)
 	var list types.LegacyCollectionList
-	col := sdb.client.Database(sdb.dbName).Collection(coMemeToken)
+	col := sdb.client.Database(sdb.dbName).Collection(coLegacyMemeToken)
 	ctx := context.Background()
 
 	filter := bson.D{}

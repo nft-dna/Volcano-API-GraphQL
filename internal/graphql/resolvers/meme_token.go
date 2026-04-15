@@ -273,10 +273,6 @@ func (t *MemeToken) CanMint(args struct {
 		return false, nil
 	}
 
-	if args.User == (common.Address{}) {
-		return false, nil
-	}
-
 	//if (t.IsOwnerOnly || !bytes.EqualFold(t.Owner.Bytes(), args.User.Bytes())) {
 	//	return false, nil
 	//}
@@ -291,8 +287,12 @@ func (t *MemeToken) CanMint(args struct {
 			return false, nil // err
 		}
 	*/
-	if int64(t.TotalSupply) >= int64(t.MintDetails.MaxItems) {
+	if int64(t.MemeDetails.BlocksTotalSupply) >= int64(t.MemeDetails.BlocksMaxSupply) {
 		return false, nil
+	}
+
+	if args.User == (common.Address{}) {
+		return true, nil
 	}
 
 	return repository.R().CanMintBlock(&t.Address, &args.User, (*big.Int)(args.Fee))

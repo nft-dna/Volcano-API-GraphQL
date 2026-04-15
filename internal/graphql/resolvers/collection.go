@@ -277,10 +277,6 @@ func (t *Collection) CanMint(args struct {
 		return false, nil
 	}
 
-	if args.User == (common.Address{}) {
-		return false, nil
-	}
-
 	if t.IsOwnerOnly && !bytes.EqualFold(t.Owner.Bytes(), args.User.Bytes()) {
 		return false, nil
 	}
@@ -297,8 +293,12 @@ func (t *Collection) CanMint(args struct {
 		}
 	}
 
-	if int64(t.TotalSupply) >= int64(t.MintDetails.MaxItems) {
+	if (int64(t.MintDetails.MaxItems) > 0) && (int64(t.TotalSupply) >= int64(t.MintDetails.MaxItems)) {
 		return false, nil
+	}
+
+	if args.User == (common.Address{}) {
+		return true, nil
 	}
 
 	if t.MintDetails.IsErc1155 {
