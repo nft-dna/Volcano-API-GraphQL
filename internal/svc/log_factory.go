@@ -85,6 +85,13 @@ func extendMemeTokenMetadata(meme *types.Collection) (err error) {
 	}
 	log.Debugf("NFT contract %s symbol: %s", meme.Address.String(), meme.Symbol)
 
+	meme.Uri, err = repo.MemeTokenUri(&meme.Address)
+	if err != nil {
+		log.Errorf("%s %s uri not known; %s", meme.Type, meme.Address.String(), err.Error())
+		return err
+	}
+	log.Debugf("NFT contract %s uri: %s", meme.Address.String(), meme.Uri)
+
 	legacyCollection, err := repo.GetLegacyMemeToken(meme.Address)
 	if err != nil {
 		log.Errorf("%s %s unable to load off-chain data; %s", meme.Type, meme.Address.String(), err.Error())
@@ -109,6 +116,7 @@ func extendMemeTokenMetadata(meme *types.Collection) (err error) {
 			Address: meme.Address,
 			Name:    meme.Name,
 			Symbol:  meme.Symbol,
+			Uri:     meme.Uri,
 			//Description       : meme.Description,
 			//CategoriesStr     : meme.CategoriesStr,
 			//Image             : meme.Image,
@@ -291,6 +299,13 @@ func extendCollectionMetadata(nft *types.Collection) (err error) {
 		return err
 	}
 	log.Debugf("NFT contract %s symbol: %s", nft.Address.String(), nft.Symbol)
+
+	nft.Uri, err = repo.CollectionUri(&nft.Address)
+	if err != nil {
+		log.Errorf("%s %s uri not known; %s", nft.Type, nft.Address.String(), err.Error())
+		return err
+	}
+	log.Debugf("NFT contract %s uri: %s", nft.Address.String(), nft.Uri)
 
 	legacyCollection, err := repo.GetLegacyCollection(nft.Address)
 	if err != nil {

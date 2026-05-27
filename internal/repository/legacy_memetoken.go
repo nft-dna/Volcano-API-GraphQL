@@ -83,15 +83,20 @@ func (p *Proxy) UploadMemeTokenApplication(app types.CollectionApplication, imag
 	}
 
 	biVal, err := p.MemeBlocksSupply(&app.Contract)
-	if err != nil {
+	if err == nil {
 		totalSupply = biVal.Uint64()
+	}
+
+	uri, err := p.MemeTokenUri(&app.Contract)
+	if err != nil {
+		uri = ""
 	}
 
 	if !isInternal {
 		return fmt.Errorf("'Not-Factory' Meme Tokens actually are not supported here")
 	}
 
-	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, false, mintDetails, memeDetails, totalSupply)
+	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, false, mintDetails, memeDetails, totalSupply, uri)
 	return p.shared.InsertLegacyMemeToken(collection, true)
 }
 

@@ -35,6 +35,10 @@ func (p *Proxy) MemeTokenSymbol(adr *common.Address) (string, error) {
 	return p.rpc.MemeTokenSymbol(adr)
 }
 
+func (p *Proxy) MemeTokenUri(adr *common.Address) (string, error) {
+	return p.rpc.MemeTokenUri(adr)
+}
+
 // StoreCollection adds the specified NFT collection contract record into persistent storage.
 func (p *Proxy) StoreMemeToken(nft *types.Collection) error {
 	err := p.db.StoreMemeToken(nft)

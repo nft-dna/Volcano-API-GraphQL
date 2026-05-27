@@ -54,32 +54,36 @@ func processImageUpload(req *http.Request, process uploadProcessor, log logger.L
 		return 500, "Unable to parse multipart/form-data"
 	}
 
+	var image types.Image
+
+	// File is optional now
 	file, _, err := req.FormFile("file")
-	if err != nil {
-		return 500, "Unable to parse multipart/form-data file \"file\""
-	}
+	if err == nil {
+		defer func(file multipart.File) {
+			if err := file.Close(); err != nil {
+				log.Errorf("could not close form file; %s", err.Error())
+			}
+		}(file)
 
-	defer func(file multipart.File) {
-		err := file.Close()
-		if err != nil {
-			log.Errorf("could not close form file; %s", err.Error())
+		buf := new(bytes.Buffer)
+		if _, err := io.Copy(buf, file); err != nil {
+			return 500, "Unable to read uploaded file"
 		}
-	}(file)
 
-	buf := new(bytes.Buffer)
-	if _, err := io.Copy(buf, file); err != nil {
-		return 500, "Unable to read uploaded file"
-	}
-	content := buf.Bytes()
+		content := buf.Bytes()
 
-	imgType, err := types.ImageTypeFromMimetype(content)
-	if err != nil {
-		return 500, err.Error()
-	}
+		imgType, err := types.ImageTypeFromMimetype(content)
+		if err != nil {
+			return 500, err.Error()
+		}
 
-	image := types.Image{
-		Data: content,
-		Type: imgType,
+		image = types.Image{
+			Data: content,
+			Type: imgType,
+		}
+	} else if err != http.ErrMissingFile {
+		// Real error while parsing file
+		return 500, "Unable to parse multipart/form-data file \"file\""
 	}
 
 	response, err = process(*identity, image, req)

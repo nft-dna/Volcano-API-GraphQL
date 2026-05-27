@@ -35,6 +35,7 @@ type Collection struct {
 	Type       string          `bson:"type"`
 	Name       string          `bson:"name"`
 	Symbol     string          `bson:"symbol"`
+	Uri        string          `bson:"uri"`
 	Created    Time            `bson:"created"`
 	Categories []int32         `bson:"categories"`
 	IsActive   bool            `bson:"is_active"`

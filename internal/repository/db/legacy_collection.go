@@ -23,6 +23,7 @@ const (
 
 	fiLegacyCollectionName              = "collectionName"
 	fiLegacyCollectionSymbol            = "collectionSymbol"
+	fiLegacyCollectionUri               = "collectionUri"
 	fiLegacyCollectionDescription       = "description"
 	fiLegacyCollectionCategoriesStr     = "categories"
 	fiLegacyCollectionImage             = "logoImageHash"
@@ -94,6 +95,7 @@ func (sdb *SharedMongoDbBridge) InsertLegacyCollection(c types.LegacyCollection)
 			{Key: fiLegacyCollectionAddress, Value: strings.ToLower(c.Address.String())},
 			{Key: fiLegacyCollectionName, Value: c.Name},
 			{Key: fiLegacyCollectionSymbol, Value: c.Symbol},
+			{Key: fiLegacyCollectionUri, Value: c.Uri},
 			{Key: fiLegacyCollectionDescription, Value: c.Description},
 			{Key: fiLegacyCollectionCategoriesStr, Value: c.CategoriesStr},
 			{Key: fiLegacyCollectionImage, Value: c.Image},

@@ -34,6 +34,7 @@ test: internal/graphql/schema/gen/schema.graphql
 	go test ./...
 
 #tools/make_graphql_bundle.sh internal/graphql/schema/gen/schema.graphql internal/graphql/definition
+#tools\make_graphql_bundle.bat internal\graphql\schema\gen\schema.graphql internal\graphql\definition
 internal/graphql/schema/gen/schema.graphql:
 	@bash tools/make_graphql_bundle.sh $@ internal/graphql/definition
 

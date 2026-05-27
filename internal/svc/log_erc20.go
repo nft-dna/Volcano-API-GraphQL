@@ -4,7 +4,6 @@ package svc
 import (
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common"
 	eth "github.com/ethereum/go-ethereum/core/types"
 )
 
@@ -26,12 +25,12 @@ func memeTokenBlocksMinted(evt *eth.Log, _ *logObserver) {
 		return
 	}
 
-	ca := common.Address{}
-	ca.SetBytes(evt.Data[0:32])
+	//minter := common.Address{}
+	//minter.SetBytes(evt.Data[0:32])
 	count := new(big.Int).SetBytes(evt.Data[32:64]).Uint64()
 
-	if !repo.IncMemeBlocksSupply(&ca, count) {
-		log.Errorf("MemeToken BlocksMinted event #%d/#%d; memetoken ca %s not found in database or update failed", evt.BlockNumber, evt.Index, ca.String())
+	if !repo.IncMemeBlocksSupply(&evt.Address, count) {
+		log.Errorf("MemeToken BlocksMinted event #%d/#%d; memetoken ca %s not found in database or update failed", evt.BlockNumber, evt.Index, evt.Address.String())
 	}
 }
 

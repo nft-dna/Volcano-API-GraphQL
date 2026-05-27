@@ -9,6 +9,9 @@ type MemeToken {
     # Description of the token contract
     symbol: String!    
 
+    # contractURI of the token contract
+    uri: String!        
+    
     # Description of the token contract
     description: String!
 

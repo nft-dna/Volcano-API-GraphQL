@@ -129,7 +129,7 @@ func CollectionImageResolver(path string) (imageUri string, err error) {
 // MemeTokenImageResolver resolves /memetoken/{address} to collection image URI
 func MemeTokenImageResolver(path string) (imageUri string, err error) {
 	pathParts := strings.Split(path, "/")
-	if len(pathParts) != 5 {
+	if len(pathParts) != 4 {
 		return "", errors.New("invalid amount of slash delimiters in URL")
 	}
 	collectionAddress := common.HexToAddress(pathParts[3])

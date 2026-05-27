@@ -78,6 +78,11 @@ func (p *Proxy) UploadCollectionApplication(app types.CollectionApplication, ima
 	isInternal := true
 	totalSupply := uint64(0)
 
+	uri, err := p.CollectionUri(&app.Contract)
+	if err != nil {
+		uri = ""
+	}
+
 	if p.IsErc1155Contract(&app.Contract) {
 		isInternal = p.extendErc1155CollectionMintDetails(&app.Contract, &mintDetails)
 		if err != nil {
@@ -85,7 +90,7 @@ func (p *Proxy) UploadCollectionApplication(app types.CollectionApplication, ima
 			return err
 		}
 		biVal, err := p.CollectionErc1155Supply(&app.Contract)
-		if err != nil {
+		if err == nil {
 			totalSupply = biVal.Uint64()
 		}
 		isOwnerOnly = !mintDetails.PublicMint
@@ -97,12 +102,12 @@ func (p *Proxy) UploadCollectionApplication(app types.CollectionApplication, ima
 			return err
 		}
 		biVal, err := p.CollectionErc721Supply(&app.Contract)
-		if err != nil {
+		if err == nil {
 			totalSupply = biVal.Uint64()
 		}
 		isOwnerOnly = !mintDetails.PublicMint
 	}
-	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, !isInternal || isOwnerOnly, mintDetails, memeDetails, totalSupply)
+	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, !isInternal || isOwnerOnly, mintDetails, memeDetails, totalSupply, uri)
 
 	return p.shared.InsertLegacyCollection(collection)
 }

@@ -35,6 +35,10 @@ func (p *Proxy) CollectionSymbol(adr *common.Address) (string, error) {
 	return p.rpc.CollectionSymbol(adr)
 }
 
+func (p *Proxy) CollectionUri(adr *common.Address) (string, error) {
+	return p.rpc.CollectionUri(adr)
+}
+
 // StoreCollection adds the specified NFT collection contract record into persistent storage.
 func (p *Proxy) StoreCollection(nft *types.Collection) error {
 	err := p.db.StoreCollection(nft)

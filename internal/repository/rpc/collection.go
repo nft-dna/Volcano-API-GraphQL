@@ -4,6 +4,7 @@ package rpc
 
 import (
 	"context"
+
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
@@ -45,6 +46,32 @@ func (o *Opera) CollectionSymbol(adr *common.Address) (string, error) {
 	if err != nil {
 		log.Errorf("can not decode contract %s symbol; %s", adr.String(), err.Error())
 		return "", err
+	}
+	return *abi.ConvertType(res[0], new(string)).(*string), nil
+}
+
+// CollectionUri provides the URI of an Artion ERC721 and/or ERC1155 token.
+// Solidity: function contractURI() view returns(string)
+func (o *Opera) CollectionUri(adr *common.Address) (string, error) {
+
+	input, err := o.abiVolcano721.Pack("contractURI")
+	if err != nil {
+		return "", nil
+	}
+
+	data, err := o.ftm.CallContract(context.Background(), ethereum.CallMsg{
+		From: common.Address{},
+		To:   adr,
+		Data: input,
+	}, nil)
+	if err != nil {
+		log.Errorf("contract %s uri not found", adr.String())
+		return "", nil
+	}
+	res, err := o.abiVolcano721.Unpack("contractURI", data)
+	if err != nil {
+		log.Errorf("can not decode contract %s uri; %s", adr.String(), err.Error())
+		return "", nil
 	}
 	return *abi.ConvertType(res[0], new(string)).(*string), nil
 }

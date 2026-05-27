@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "make build/artionapi",
+            "group": "build",
+            "problemMatcher": ["$go"]
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "build/artionapi -cfg my.config.json",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$go"]
+        },
+        {
+            "label": "Test",
+            "type": "shell",
+            "command": "make test",
+            "group": "test",
+            "problemMatcher": ["$go"]
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "make clean",
+            "problemMatcher": []
+        }
+    ]
+}

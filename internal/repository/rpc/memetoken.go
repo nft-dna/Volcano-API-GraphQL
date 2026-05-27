@@ -23,7 +23,7 @@ func (o *Opera) MemeTokenName(adr *common.Address) (string, error) {
 		log.Errorf("contract %s name not found", adr.String())
 		return "", err
 	}
-	res, err := o.abiVolcano721.Unpack("name", data)
+	res, err := o.abiVolcano20.Unpack("name", data)
 	if err != nil {
 		log.Errorf("can not decode contract %s name; %s", adr.String(), err.Error())
 		return "", err
@@ -43,10 +43,35 @@ func (o *Opera) MemeTokenSymbol(adr *common.Address) (string, error) {
 		log.Errorf("contract %s symbol not found", adr.String())
 		return "", err
 	}
-	res, err := o.abiVolcano721.Unpack("symbol", data)
+	res, err := o.abiVolcano20.Unpack("symbol", data)
 	if err != nil {
 		log.Errorf("can not decode contract %s symbol; %s", adr.String(), err.Error())
 		return "", err
+	}
+	return *abi.ConvertType(res[0], new(string)).(*string), nil
+}
+
+// CollectionUri provides the URI of an Artion ERC721 and/or ERC1155 token.
+// Solidity: function contractURI() view returns(string)
+func (o *Opera) MemeTokenUri(adr *common.Address) (string, error) {
+	input, err := o.abiVolcano20.Pack("contractURI")
+	if err != nil {
+		return "", nil
+	}
+
+	data, err := o.ftm.CallContract(context.Background(), ethereum.CallMsg{
+		From: common.Address{},
+		To:   adr,
+		Data: input,
+	}, nil)
+	if err != nil {
+		log.Errorf("contract %s uri not found", adr.String())
+		return "", nil
+	}
+	res, err := o.abiVolcano20.Unpack("contractURI", data)
+	if err != nil {
+		log.Errorf("can not decode contract %s uri; %s", adr.String(), err.Error())
+		return "", nil
 	}
 	return *abi.ConvertType(res[0], new(string)).(*string), nil
 }
