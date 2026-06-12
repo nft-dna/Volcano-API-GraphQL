@@ -78,7 +78,7 @@ func (p *Proxy) UploadMemeTokenApplication(app types.CollectionApplication, imag
 	// TODO.. implement an 'interface' or check for contract creator address...
 	isInternal := p.extendMemeTokenDetails(&app.Contract, &memeDetails)
 	if err != nil {
-		log.Criticalf("failed to extend Meme Tokne Details %s; %s", app.Contract.String(), err.Error())
+		log.Criticalf("failed to extend Meme Token Details %s; %s", app.Contract.String(), err.Error())
 		return err
 	}
 
@@ -97,7 +97,13 @@ func (p *Proxy) UploadMemeTokenApplication(app types.CollectionApplication, imag
 	}
 
 	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, false, mintDetails, memeDetails, totalSupply, uri)
-	return p.shared.InsertLegacyMemeToken(collection, true)
+	err = p.shared.InsertLegacyMemeToken(collection, true)
+	if err != nil {
+		log.Criticalf("failed to insert Meme Token Details %s; %s", app.Contract.String(), err.Error())
+		return err
+	}
+	p.cache.InvalidateLegacyMemeToken(app.Contract)
+	return nil
 }
 
 func (p *Proxy) extendMemeTokenDetails(adr *common.Address, memeDetails *types.MemeTokenDetails) bool {

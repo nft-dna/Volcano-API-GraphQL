@@ -89,7 +89,35 @@ func (bs *blkScanner) name() string {
 // init initializes the block scanner and registers it with the manager.
 func (bs *blkScanner) init() {
 	bs.inObservedBlocks = bs.mgr.logObserver.outObservedBlocks
-	bs.inRescanBlocks = bs.mgr.collectionValidator.outRescanQueue
+	// Create a rescan queue that multiplexes from both collectionValidator and blkObserver
+	bs.inRescanBlocks = make(chan uint64, blockQueueCapacity)
+
+	// Start goroutine to multiplex rescan requests from multiple sources
+	go func() {
+		for {
+			select {
+			case bid, ok := <-bs.mgr.collectionValidator.outRescanQueue:
+				if !ok {
+					return
+				}
+				select {
+				case bs.inRescanBlocks <- bid:
+				case <-bs.sigStop:
+					return
+				}
+			case bid, ok := <-bs.mgr.blkObserver.outFailedBlocks:
+				if !ok {
+					return
+				}
+				select {
+				case bs.inRescanBlocks <- bid:
+				case <-bs.sigStop:
+					return
+				}
+			}
+		}
+	}()
+
 	if cfg.Node.BlkScannerHysteresis > 0 {
 		blkScannerHysteresis = (uint64)(cfg.Node.BlkScannerHysteresis)
 	}
@@ -183,7 +211,7 @@ func (bs *blkScanner) next() {
 	if bs.state == blkIsScanning && bs.current <= bs.target {
 		hdr, err := repo.GetHeader(bs.current)
 		if err != nil {
-			log.Errorf("block header #%s not available; %s", bs.current, err.Error())
+			log.Errorf("block header #%d not available; %s", bs.current, err.Error())
 			return
 		}
 
@@ -269,5 +297,5 @@ func (bs *blkScanner) notify() {
 		log.Infof("idle at #%d, head at #%d", bs.current, bs.target)
 		return
 	}
-	log.Infof("scanner at #%d of #%d; processed #%d", bs.current, bs.target, bs.lastProcessedBlock)
+	log.Infof("scanner at #%d of #%d; processed #%d (head delta #%d)", bs.current, bs.target, bs.lastProcessedBlock, bs.current-bs.lastProcessedBlock)
 }

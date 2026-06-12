@@ -2,6 +2,8 @@
 package svc
 
 import (
+	"time"
+
 	"github.com/ethereum/go-ethereum/common"
 	eth "github.com/ethereum/go-ethereum/core/types"
 )
@@ -9,6 +11,12 @@ import (
 const (
 	// logEventQueueCapacity represents the log events queue capacity.
 	logEventQueueCapacity = 200
+
+	// blockLogsRetryAttempts is the number of attempts to fetch logs for a block.
+	blockLogsRetryAttempts = 3
+
+	// blockLogsRetryDelay is the delay between retry attempts.
+	blockLogsRetryDelay = 200 * time.Millisecond
 )
 
 // blkObserver represents a service monitoring incoming blocks
@@ -30,6 +38,10 @@ type blkObserver struct {
 	// with recognized block events for processing
 	outEvents chan eth.Log
 
+	// outFailedBlocks is the channel being fed with blocks that failed to fetch logs
+	// these blocks will be rescanned by the scanner
+	outFailedBlocks chan uint64
+
 	// topics represents the topics observed by the API server
 	topics [][]common.Hash
 }
@@ -37,10 +49,11 @@ type blkObserver struct {
 // newBlkObserver creates a new instance of the block observer service.
 func newBlkObserver(mgr *Manager) *blkObserver {
 	return &blkObserver{
-		mgr:       mgr,
-		sigStop:   make(chan bool, 1),
-		outEvents: make(chan eth.Log, logEventQueueCapacity),
-		topics:    nil,
+		mgr:             mgr,
+		sigStop:         make(chan bool, 1),
+		outEvents:       make(chan eth.Log, logEventQueueCapacity),
+		outFailedBlocks: make(chan uint64, logEventQueueCapacity),
+		topics:          nil,
 	}
 }
 
@@ -61,6 +74,7 @@ func (bo *blkObserver) init() {
 func (bo *blkObserver) run() {
 	defer func() {
 		close(bo.outEvents)
+		close(bo.outFailedBlocks)
 		bo.mgr.closed(bo)
 	}()
 
@@ -89,11 +103,30 @@ func (bo *blkObserver) close() {
 
 // process an incoming block header by investigating its events.
 func (bo *blkObserver) process(hdr *eth.Header) {
-	// pull events for the block
-	logs, err := repo.BlockLogs(hdr.Number, bo.topics)
-	if err != nil {
-		log.Errorf("block #%d event logs not available; %s", hdr.Number.Uint64(), err.Error())
-		return
+	var logs []eth.Log
+	var err error
+
+	for attempt := 1; attempt <= blockLogsRetryAttempts; attempt++ {
+		logs, err = repo.BlockLogs(hdr.Number, bo.topics)
+		if err == nil {
+			break
+		}
+
+		log.Errorf("block #%d event logs not available; attempt %d/%d; %s", hdr.Number.Uint64(), attempt, blockLogsRetryAttempts, err.Error())
+		if attempt == blockLogsRetryAttempts {
+			log.Errorf("block #%d failed after %d attempts, requesting rescan", hdr.Number.Uint64(), blockLogsRetryAttempts)
+			select {
+			case bo.outFailedBlocks <- hdr.Number.Uint64():
+			default:
+				log.Criticalf("failed to queue rescan for block #%d", hdr.Number.Uint64())
+			}
+		}
+
+		select {
+		case <-bo.sigStop:
+			return
+		case <-time.After(blockLogsRetryDelay):
+		}
 	}
 
 	// push interesting events into the output queue, if any

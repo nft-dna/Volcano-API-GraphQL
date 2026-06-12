@@ -108,8 +108,13 @@ func (p *Proxy) UploadCollectionApplication(app types.CollectionApplication, ima
 		isOwnerOnly = !mintDetails.PublicMint
 	}
 	collection := app.ToCollection(imageCid, &owner, cfg.Server.AddCollectionAsAppropriate, isInternal, !isInternal || isOwnerOnly, mintDetails, memeDetails, totalSupply, uri)
-
-	return p.shared.InsertLegacyCollection(collection)
+	err = p.shared.InsertLegacyCollection(collection)
+	if err != nil {
+		log.Criticalf("failed to insert Collection Details %s; %s", app.Contract.String(), err.Error())
+		return err
+	}
+	p.cache.InvalidateLegacyCollection(app.Contract)
+	return nil
 }
 
 func (p *Proxy) extendErc1155CollectionMintDetails(adr *common.Address, mintDetails *types.CollectionMintDetails) bool {
